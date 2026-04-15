@@ -1,0 +1,26 @@
+:root {
+  font-optical-sizing: auto;
+}
+
+body {
+  font-family: 'Newsreader', serif;
+  background-color: #f9f9f8;
+  color: #2d3433;
+}
+
+.font-sans-interface {
+  font-family: 'Public Sans', sans-serif;
+}
+
+.font-div,
+.font-serif {
+  font-family: 'Newsreader', serif;
+}
+
+.font-sans {
+  font-family: 'Public Sans', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
