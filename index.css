@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+    font-size: 20px;
+  }
+
+  body {
+    @apply bg-background text-on-surface;
+    font-family: 'Newsreader', serif;
+  }
+}
+
+@layer components {
+  .text-label {
+    @apply font-[Public_Sans];
+  }
+}
