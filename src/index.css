@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom brand identifier */
+  --color-primary: #101828;
+  /* --color-primary: #2c4a75; */
+  --color-primary-text: #1E293B;
+  --color-primary-muted: #5A6D8C;
+  --color-emerald-600: #495B7A;
+  --color-border: #e5e7eb;
+}
+
+body {
+  background-color: #FFFFFF !important;
+  color: #1E293B !important;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Premium selection style */
+::selection {
+  background-color: rgba(90, 109, 140, 0.2) !important;
+  color: #0F172A !important;
+}
+
+/* Modern clean editorial selections and scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CBD5E1;
+}
+
+/* Selection using gray tone */
+::selection {
+  background-color: rgba(148, 163, 184, 0.2) !important; /* var(--color-gray-400) */
+  color: var(--color-primary) !important;
+}
+
+
