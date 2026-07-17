@@ -23,3 +23,5 @@ const features = [
     iconColor: "text-emerald-700",
   },
 ];
+
+export default features;
