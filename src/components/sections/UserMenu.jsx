@@ -25,7 +25,7 @@ export default function UserMenu({
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-stretch gap-2">
       <div
         onClick={() => setActiveTab('profile')}
         className="flex items-center gap-2.5 cursor-pointer hover:bg-gray-50 transition bg-white/60 border border-border px-3 py-1.5"
@@ -49,10 +49,10 @@ export default function UserMenu({
           signOut();
           setActiveTab('search');
         }}
-        title="Sign Out"
-        className="p-2 border border-border hover:bg-gray-100 text-gray-600 hover:text-primary transition shrink-0 cursor-pointer bg-white"
+        className="flex items-center gap-2 px-3 py-1.5 border border-border hover:border-red-200 hover:bg-red-50 text-gray-600 hover:text-red-600 transition shrink-0 cursor-pointer bg-white text-[10px] font-bold uppercase tracking-[0.15em]"
       >
-        <LogOut className="w-4 h-4" />
+        <LogOut className="w-3.5 h-3.5" />
+        <span>SIGN OUT</span>
       </button>
     </div>
   );
