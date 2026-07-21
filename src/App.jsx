@@ -13,7 +13,7 @@ import Loader from './components/ui/Loader';
 import Header from './components/sections/Header';
 
 function ArchiveApp() {
-  const { user, profile, loading } = useAuth();
+  const { user, loading } = useAuth();
 
   // Navigation tabs
   const [activeTab, setActiveTab] = useState(() => {

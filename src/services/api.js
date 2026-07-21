@@ -1,5 +1,4 @@
 import { supabase, isSupabaseConfigured, disableSupabase } from '../lib/supabase';
-import { resolveRole } from '../constants/constants';
 import { DEFAULT_PROFILES, DEFAULT_PAPERS, DEFAULT_COLLABORATORS } from '../constants/seedData';
 import { getStorageItem, setStorageItem } from '../utils/localStorageHelper';
 
@@ -308,7 +307,7 @@ export const trackDownload = async (paperId, userId) => {
 
   if (shouldUseSupabase()) {
     try {
-      const { data: existing, error: selectErr } = await supabase
+      const { data: existing, error: _ } = await supabase
         .from('downloads')
         .select('id')
         .eq('user_id', userId)
