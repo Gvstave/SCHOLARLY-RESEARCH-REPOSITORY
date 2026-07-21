@@ -1,0 +1,8 @@
+# www.robotstxt.org/
+
+# Allow all search engines to crawl all pages of the repository
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.curatedarchive.tech/sitemap.xml
