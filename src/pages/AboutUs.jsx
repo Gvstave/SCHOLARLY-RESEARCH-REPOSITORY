@@ -10,7 +10,7 @@ export default function AboutUs() {
         <div className="space-y-4 border-b border-border pb-8 text-left">
           <div className="animate- inline-flex items-center gap-2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-500 rounded">
             <div className='py-2 px-3'>
-              <h2 className='text-black text-[12px]'>Having an issue or need your work remove? <a href="mailto:ilungagustave73@gmail.com" className='text-blue-500'>Contact Admin</a></h2>
+              <h2 className='text-black text-[12px]'>Having an issue or need your work removed? <a href="mailto:ilungagustave73@gmail.com" className='text-blue-500'>Contact Admin</a></h2>
             </div>
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold text-primary uppercase tracking-tight my-2">
