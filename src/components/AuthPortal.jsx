@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { isSupabaseConfigured } from '../lib/supabase';
 import { INSTITUTIONS } from '../constants/institutions';
-import { Mail, Lock, User, Landmark, UserPlus, LogIn, Fingerprint, Eye, EyeOff, ShieldCheck } from 'lucide-react';
-import Button from './ui/Button';
-import FormField from './ui/FormField';
+import { UserPlus, LogIn, Fingerprint, ShieldCheck } from 'lucide-react';
 import StatusBanner from './ui/StatusBanner';
+import SignInForm from './auth/SignInForm';
+import SignUpForm from './auth/SignUpForm';
 
 export default function AuthPortal({ onDismiss, defaultMode = 'signin' }) {
   const { signIn, signUp, user } = useAuth();
@@ -101,99 +101,43 @@ export default function AuthPortal({ onDismiss, defaultMode = 'signin' }) {
               {successMsg && <StatusBanner type="success" text={successMsg} />}
 
               <form onSubmit={handleSubmit} className="space-y-4 text-xs text-primary">
-                {mode === 'signup' && (
-                  <div className="space-y-3">
-                    <FormField
-                      label="Full name"
-                      name="fullName"
-                      required
-                      placeholder="e.g. Dr. Arthur Dent"
-                      icon={User}
-                      className="py-2 text-xs"
-                      labelClassName="text-gray-700 uppercase tracking-widest text-[9px] font-bold block mb-1"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                    />
-
-                    <FormField
-                      label="Institution"
-                      name="selectedInst"
-                      type="select"
-                      required
-                      options={INSTITUTIONS}
-                      icon={Landmark}
-                      className="py-2 text-xs"
-                      labelClassName="text-gray-700 uppercase tracking-widest text-[9px] font-bold block mb-1"
-                      value={selectedInst}
-                      onChange={(e) => setSelectedInst(e.target.value)}
-                    />
-
-                    {selectedInst === 'Independent / Other' && (
-                      <FormField
-                        name="customInst"
-                        placeholder="Optionally enter your institution name..."
-                        className="py-2 text-xs"
-                        value={customInst}
-                        onChange={(e) => setCustomInst(e.target.value)}
-                      />
-                    )}
-                  </div>
+                {mode === 'signin' ? (
+                  <SignInForm
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
+                    loading={loading}
+                  />
+                ) : (
+                  <SignUpForm
+                    fullName={fullName}
+                    setFullName={setFullName}
+                    selectedInst={selectedInst}
+                    setSelectedInst={setSelectedInst}
+                    customInst={customInst}
+                    setCustomInst={setCustomInst}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
+                    loading={loading}
+                  />
                 )}
-
-                <FormField
-                  label="Email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="you@example.com"
-                  icon={Mail}
-                  className="py-2 text-xs"
-                  labelClassName="text-gray-700 uppercase tracking-widest text-[9px] font-bold block mb-1"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-
-                <FormField
-                  label="Password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  required
-                  placeholder="••••••••"
-                  icon={Lock}
-                  className="py-2 text-xs"
-                  labelClassName="text-gray-700 uppercase tracking-widest text-[9px] font-bold block mb-1"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  rightElement={
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                      className="text-gray-500 hover:text-primary transition flex items-center justify-center p-1"
-                      aria-label={showPassword ? 'Hide password' : 'Show password'}
-                      tabIndex={-1}
-                    >
-                      {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                    </button>
-                  }
-                />
-
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  fullWidth
-                  variant="primary"
-                  className="text-xs py-3 border-gray-950 hover:shadow"
-                >
-                  {loading ? 'Please wait...' : mode === 'signin' ? 'Sign In' : 'Create Account'}
-                </Button>
               </form>
-
-
 
               <div className="text-center text-[11px] text-gray-700 border-t border-gray-100 pt-2 flex items-center justify-between">
                 <span>{mode === 'signin' ? "Don't have an account?" : 'Already have an account?'}</span>
                 <button
-                  onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
+                  onClick={() => {
+                    setMode(mode === 'signin' ? 'signup' : 'signin');
+                    setErrorMsg('');
+                    setSuccessMsg('');
+                  }}
                   className="text-primary underline font-semibold flex items-center gap-0.5 hover:text-gray-700"
                 >
                   {mode === 'signin' ? (

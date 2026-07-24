@@ -1,5 +1,4 @@
 import React from 'react';
-import { ShieldCheck, Mail, FileText } from 'lucide-react';
 import FeatureCard from '../components/ui/FeatureCard';
 import features from '../constants/feature';
 

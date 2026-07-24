@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+<<<<<<< HEAD
 import { Lock, LogOut, Menu, X } from 'lucide-react';
 import Button from '../ui/Button';
 import NavButton from '../ui/NavButton';
+=======
+import { Menu, X } from 'lucide-react';
+import DesktopNav from './DesktopNav';
+import UserMenu from './UserMenu';
+import MobileNav from './MobileNav';
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
 
 export default function Header({
   activeTab,
@@ -33,6 +40,7 @@ export default function Header({
           </div>
 
           {/* Desktop Navigation Link Toggles */}
+<<<<<<< HEAD
           <div className="hidden lg:flex items-center space-x-10 text-[10px] font-extrabold tracking-[0.22em] text-primary uppercase">
             {!user && (
               <NavButton
@@ -129,6 +137,27 @@ export default function Header({
                 JOIN
               </Button>
             )}
+=======
+          <DesktopNav
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            browseMode={browseMode}
+            setBrowseMode={setBrowseMode}
+            user={user}
+            profile={profile}
+            setShowAuthOverlay={setShowAuthOverlay}
+          />
+
+          {/* Account Info Bar & Controls */}
+          <div className="hidden lg:flex items-center gap-3">
+            <UserMenu
+              user={user}
+              profile={profile}
+              signOut={signOut}
+              setActiveTab={setActiveTab}
+              setShowAuthOverlay={setShowAuthOverlay}
+            />
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
           </div>
 
           {/* Mobile menu triggers */}
@@ -144,6 +173,7 @@ export default function Header({
 
       {/* Mobile slide menu context */}
       {mobileMenuOpen && (
+<<<<<<< HEAD
         <div className="lg:hidden border-t border-gray-100 bg-gray-50 text-xs uppercase tracking-wider font-bold divide-y divide-gray-100 px-4">
           {!user && (
             <button
@@ -268,7 +298,24 @@ export default function Header({
             )}
           </div>
         </div>
+=======
+        <MobileNav
+          user={user}
+          profile={profile}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          browseMode={browseMode}
+          setBrowseMode={setBrowseMode}
+          setShowAuthOverlay={setShowAuthOverlay}
+          setMobileMenuOpen={setMobileMenuOpen}
+          signOut={signOut}
+        />
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
       )}
     </nav>
   );
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b

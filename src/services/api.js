@@ -1,5 +1,8 @@
 import { supabase, isSupabaseConfigured, disableSupabase } from '../lib/supabase';
+<<<<<<< HEAD
 import { resolveRole } from '../constants/constants';
+=======
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
 import { DEFAULT_PROFILES, DEFAULT_PAPERS, DEFAULT_COLLABORATORS } from '../constants/seedData';
 import { getStorageItem, setStorageItem } from '../utils/localStorageHelper';
 
@@ -308,7 +311,11 @@ export const trackDownload = async (paperId, userId) => {
 
   if (shouldUseSupabase()) {
     try {
+<<<<<<< HEAD
       const { data: existing, error: selectErr } = await supabase
+=======
+      const { data: existing, error: _ } = await supabase
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
         .from('downloads')
         .select('id')
         .eq('user_id', userId)

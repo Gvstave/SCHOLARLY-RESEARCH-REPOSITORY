@@ -1,6 +1,12 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Download, Layers, Lock, Quote } from 'lucide-react';
 import Button from '../ui/Button';
+=======
+import { Layers } from 'lucide-react';
+import PaperDetailsStats from './PaperDetailsStats';
+import PaperDetailsActions from './PaperDetailsActions';
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
 
 export default function PaperDetails({
   selectedPaper,
@@ -88,6 +94,7 @@ export default function PaperDetails({
         </div>
 
         <div className="space-y-6">
+<<<<<<< HEAD
           {user && (
             <div className="bg-gray-50 border border-border p-5 space-y-4 text-left">
               <div className="flex items-center justify-between border-b border-border pb-2.5">
@@ -162,6 +169,21 @@ export default function PaperDetails({
               </div>
             )}
           </div>
+=======
+          <PaperDetailsActions
+            user={user}
+            alreadyCited={alreadyCited}
+            selectedPaper={selectedPaper}
+            handleCite={handleCite}
+            handleDownload={handleDownload}
+            onRequireAuth={onRequireAuth}
+          />
+
+          <PaperDetailsStats
+            downloads={selectedPaper.downloads}
+            citations={selectedPaper.citations}
+          />
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
         </div>
       </div>
     </div>

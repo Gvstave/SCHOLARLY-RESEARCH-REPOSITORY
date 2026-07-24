@@ -1,6 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import { FileText, ShieldCheck } from 'lucide-react';
 import PaperStatusBadge from '../ui/PaperStatusBadge';
+=======
+import { FileText } from 'lucide-react';
+import UserPaperRow from './UserPaperRow';
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
 
 /**
  * Lists research manuscripts authored by the signed-in user with status badges.
@@ -22,6 +27,7 @@ export default function UserPapersList({ loadingPapers, userPapers }) {
       ) : (
         <div className="space-y-4">
           {userPapers.map((paper) => (
+<<<<<<< HEAD
             <div key={paper.id} className="bg-white border border-border p-6 flex flex-col md:flex-row md:items-center justify-between shadow-sm gap-4 hover:border-gray-500 transition text-left">
               <div className="space-y-1">
                 <span className="text-[9px] uppercase tracking-widest font-bold text-primary-text block">
@@ -47,6 +53,9 @@ export default function UserPapersList({ loadingPapers, userPapers }) {
                 <PaperStatusBadge status={paper.status} />
               </div>
             </div>
+=======
+            <UserPaperRow key={paper.id} paper={paper} />
+>>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
           ))}
         </div>
       )}

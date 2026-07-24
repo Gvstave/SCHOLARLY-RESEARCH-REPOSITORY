@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { submitPaper } from '../services/api';
-import { PAPER_CATEGORIES } from '../constants/categories';
 import { FileText } from 'lucide-react';
-import SectionHeader from './ui/SectionHeader';
 import StatusBanner from './ui/StatusBanner';
-import FileDropZone from './sections/FileDropZone';
-import FormField from './ui/FormField';
 import CollaboratorFormSection from './sections/CollaboratorFormSection';
+import UploadDetailsSection from './sections/UploadDetailsSection';
+import UploadContentsSection from './sections/UploadContentsSection';
+import UploadFilesSection from './sections/UploadFilesSection';
 
 /**
  * Main form for research paper manuscript submission.
@@ -118,135 +117,19 @@ export default function UploadPaperForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
+        <UploadDetailsSection formData={formData} onInputChange={handleInputChange} />
 
-        {/* Paper metadata */}
+        <UploadContentsSection formData={formData} onInputChange={handleInputChange} />
+
+        <UploadFilesSection
+          files={files}
+          onUpdateFiles={setFiles}
+          coverPreviewUrl={coverPreviewUrl}
+          onSetStatusMsg={setStatusMsg}
+        />
+
         <div className="space-y-6">
-          <SectionHeader>1. Paper details</SectionHeader>
-
-          <FormField
-            label="Title"
-            name="title"
-            required
-            placeholder="e.g. Spectral Signatures of Post-Degenerate White Dwarfs"
-            className="text-base py-3"
-            labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
-            value={formData.title}
-            onChange={handleInputChange}
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormField
-              label="Category"
-              name="category"
-              type="select"
-              required
-              placeholder="Choose one..."
-              options={PAPER_CATEGORIES}
-              className="py-3"
-              labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
-              value={formData.category}
-              onChange={handleInputChange}
-            />
-
-            <FormField
-              label="Year"
-              name="year"
-              type="number"
-              required
-              min={1900}
-              max={2030}
-              className="py-3"
-              labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
-              value={formData.year}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-
-        {/* Long text */}
-        <div className="space-y-6">
-          <SectionHeader>2. Contents</SectionHeader>
-
-          <FormField
-            label="Abstract"
-            name="abstract"
-            type="textarea"
-            required
-            rows={4}
-            placeholder="Briefly describe the problem, your approach, and the main findings..."
-            className="py-3"
-            labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
-            value={formData.abstract}
-            onChange={handleInputChange}
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormField
-              label="Introduction (optional)"
-              name="introduction"
-              type="textarea"
-              rows={3}
-              placeholder="Background and prior work..."
-              className="py-3"
-              labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
-              value={formData.introduction}
-              onChange={handleInputChange}
-            />
-
-            <FormField
-              label="Conclusion (optional)"
-              name="conclusion"
-              type="textarea"
-              rows={3}
-              placeholder="Main takeaways and future work..."
-              className="py-3"
-              labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
-              value={formData.conclusion}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-
-        {/* File uploads */}
-        <div className="space-y-6">
-          <SectionHeader>3. Files</SectionHeader>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FileDropZone
-              label="Manuscript (PDF or Word)"
-              required
-              accept=".pdf,.doc,.docx"
-              file={files.pdf}
-              onFile={(file) => setFiles((prev) => ({ ...prev, pdf: file }))}
-              helperText="PDF, DOCX, or DOC"
-              validateType={(f) => {
-                const allowedTypes = [
-                  'application/pdf',
-                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                  'application/msword'
-                ];
-                const ext = f.name ? '.' + f.name.split('.').pop().toLowerCase() : '';
-                return allowedTypes.includes(f.type) || ['.pdf', '.doc', '.docx'].includes(ext);
-              }}
-              onInvalidType={() =>
-                setStatusMsg({ type: 'error', text: 'Please upload a PDF, DOCX, or DOC file.' })
-              }
-            />
-
-            <FileDropZone
-              label="Cover image (optional)"
-              accept="image/*"
-              file={files.cover}
-              onFile={(file) => setFiles((prev) => ({ ...prev, cover: file }))}
-              preview={coverPreviewUrl}
-              helperText="JPG, PNG or WEBP"
-            />
-          </div>
-        </div>
-
-        {/* Co-authors */}
-        <div className="space-y-6">
-          <SectionHeader>4. Co-authors</SectionHeader>
+          <div className="text-[12px] uppercase tracking-wider text-primary font-bold border-b border-border pb-2">4. Co-authors</div>
           <CollaboratorFormSection
             collaborators={collaborators}
             onUpdateCollaborators={setCollaborators}

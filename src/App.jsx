@@ -13,7 +13,7 @@ import Loader from './components/ui/Loader';
 import Header from './components/sections/Header';
 
 function ArchiveApp() {
-  const { user, profile, signOut, loading } = useAuth();
+  const { user, loading } = useAuth();
 
   // Navigation tabs
   const [activeTab, setActiveTab] = useState(() => {
@@ -32,9 +32,13 @@ function ArchiveApp() {
 
   // Sync state changes to URL hash
   useEffect(() => {
-    let hash = 'home';
+    if (activeTab === 'search' && window.location.hash.startsWith('#paper-')) {
+      return;
+    }
+
+    let hash = '';
     if (activeTab === 'search') {
-      hash = browseMode ? 'browse' : 'home';
+      hash = browseMode ? 'browse' : '';
     } else if (activeTab === 'submit') {
       hash = 'submit';
     } else if (activeTab === 'about') {
@@ -45,8 +49,14 @@ function ArchiveApp() {
       hash = 'admin';
     }
 
-    if (window.location.hash !== `#${hash}`) {
-      window.location.hash = hash;
+    if (hash) {
+      if (window.location.hash !== `#${hash}`) {
+        window.location.hash = hash;
+      }
+    } else {
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
     }
   }, [activeTab, browseMode]);
 
@@ -54,6 +64,17 @@ function ArchiveApp() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
+      const protectedHashes = ['#submit', '#profile', '#admin', '#browse'];
+
+      if (protectedHashes.includes(hash) && !user) {
+        setActiveTab('search');
+        setBrowseMode(false);
+        if (window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+        return;
+      }
+
       if (hash === '#submit') {
         setActiveTab('submit');
       } else if (hash === '#about') {
@@ -65,6 +86,8 @@ function ArchiveApp() {
       } else if (hash === '#browse') {
         setActiveTab('search');
         setBrowseMode(true);
+      } else if (hash.startsWith('#paper-')) {
+        setActiveTab('search');
       } else {
         setActiveTab('search');
         setBrowseMode(false);
@@ -73,19 +96,26 @@ function ArchiveApp() {
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [user]);
 
   // Handle root URL redirect based on auth status, but do NOT override explicit hashes
   useEffect(() => {
     if (loading) return;
     const hash = window.location.hash;
-    if (!hash || hash === '#' || hash === '#home') {
-      if (user) {
+
+    if (user) {
+      if (!hash || hash === '#' || hash === '#home') {
         setActiveTab('search');
         setBrowseMode(true);
-      } else {
+      }
+    } else {
+      const protectedHashes = ['#submit', '#profile', '#admin', '#browse'];
+      if (!hash || hash === '#' || hash === '#home' || protectedHashes.includes(hash)) {
         setActiveTab('search');
         setBrowseMode(false);
+        if (window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
       }
     }
   }, [user, loading]);
