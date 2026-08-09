@@ -33,7 +33,7 @@ export default function AboutUs() {
           <h2 className="font-semibold text-lg sm:text-xl text-primary tracking-tight">Why we built this</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <p className="text-sm sm:text-base leading-relaxed text-gray-600">
-              Scientific publishing is often locked behind costly paywalls or lost in complex university systems. The Curated Archive offers a simple, quiet place to share and view research papers directly without distraction.
+              Scientific publishing is often locked behind cost paywalls or lost in complex university systems. The Curated Archive offers a simple, quiet place to share and view research papers directly without distraction.
             </p>
             <p className="text-sm sm:text-base leading-relaxed text-gray-600">
               By providing easy open access, university affiliation search, and simple checks for errors, we support a friendly, non-commercial environment where scholars can focus on discovering, discussing, and improving great research.
