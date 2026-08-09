@@ -7,7 +7,7 @@ import './index.css';
 const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!publishableKey) {
-  throw new Error('An error might have occured. Please reload the app.');
+  throw new Error('An error has occured please reload the app.');
 }
 
 createRoot(document.getElementById('root')).render(
