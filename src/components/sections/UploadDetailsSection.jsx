@@ -24,7 +24,7 @@ export default function UploadDetailsSection({ formData, onInputChange }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField
-          label="Category"
+          label="Faculty"
           name="category"
           type="select"
           required
@@ -37,7 +37,7 @@ export default function UploadDetailsSection({ formData, onInputChange }) {
         />
 
         <FormField
-          label="Year"
+          label="Year of Publication"
           name="year"
           type="number"
           required
