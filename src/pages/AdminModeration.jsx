@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPapers, updatePaperStatus, deletePaper } from '../services/api';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../auth';
 import { Eye } from 'lucide-react';
 import ModerationStats from '../components/admin/ModerationStats';
 import PendingPapersList from '../components/admin/PendingPapersList';
@@ -36,8 +36,9 @@ export default function AdminModeration() {
       setApprovedCount(allPapers.filter((p) => p.status === 'approved').length);
       setTotalDownloads(downloadsSum);
       setTotalCitations(citationsSum);
-    } catch (err) {
-      console.error('Failed to load moderation data:', err);
+    } catch {
+      setPapers([]);
+      setPendingPapers([]);
     } finally {
       setLoading(false);
     }

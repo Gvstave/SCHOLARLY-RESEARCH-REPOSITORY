@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { updateProfile, getPapers } from '../services/api';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../auth';
 import { User } from 'lucide-react';
 import ProfileEditForm from '../components/profile/ProfileEditForm';
 import DeleteAccountCard from '../components/profile/DeleteAccountCard';
@@ -22,6 +22,7 @@ export default function ResearcherProfile() {
   });
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState('');
   const [saving, setSaving] = useState(false);
@@ -53,8 +54,8 @@ export default function ResearcherProfile() {
       const allPapers = await getPapers();
       const owned = allPapers.filter((p) => p.author_id === user.id);
       setUserPapers(owned);
-    } catch (err) {
-      console.error('Failed to load your papers:', err);
+    } catch {
+      setUserPapers([]);
     } finally {
       setLoadingPapers(false);
     }
@@ -123,10 +124,14 @@ export default function ResearcherProfile() {
   };
 
   const handleDeleteAccount = async () => {
+    if (deletingAccount) return;
+    setDeletingAccount(true);
+    setSaveStatus({ type: 'info', text: 'Deleting your account...' });
     try {
       await deleteAccount();
     } catch (err) {
       setSaveStatus({ type: 'error', text: `Failed to delete account: ${err.message}` });
+      setDeletingAccount(false);
     }
   };
 
@@ -159,6 +164,7 @@ export default function ResearcherProfile() {
             showDeleteConfirm={showDeleteConfirm}
             setShowDeleteConfirm={setShowDeleteConfirm}
             handleDeleteAccount={handleDeleteAccount}
+            deleting={deletingAccount}
           />
         </div>
 

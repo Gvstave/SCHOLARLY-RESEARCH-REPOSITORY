@@ -1,6 +1,6 @@
-import React from 'react';
-import { Lock, LogOut } from 'lucide-react';
-import Button from '../ui/Button';
+import React from "react";
+import { Lock, LogOut } from "lucide-react";
+import Button from "../ui/Button";
 
 /**
  * MobileNav drawer component for Header.jsx.
@@ -21,7 +21,7 @@ export default function MobileNav({
       {!user && (
         <button
           onClick={() => {
-            setActiveTab('search');
+            setActiveTab("search");
             setBrowseMode(false);
             setMobileMenuOpen(false);
           }}
@@ -37,7 +37,7 @@ export default function MobileNav({
             setMobileMenuOpen(false);
             return;
           }
-          setActiveTab('search');
+          setActiveTab("search");
           setBrowseMode(true);
           setMobileMenuOpen(false);
         }}
@@ -54,7 +54,7 @@ export default function MobileNav({
             setMobileMenuOpen(false);
             return;
           }
-          setActiveTab('submit');
+          setActiveTab("submit");
           setMobileMenuOpen(false);
         }}
         className="w-full text-left py-3.5 text-primary-text hover:text-primary flex items-center justify-between font-bold"
@@ -69,7 +69,7 @@ export default function MobileNav({
             setMobileMenuOpen(false);
             return;
           }
-          setActiveTab('profile');
+          setActiveTab("profile");
           setMobileMenuOpen(false);
         }}
         className="w-full text-left py-3.5 text-primary-text hover:text-primary flex items-center justify-between font-bold"
@@ -77,10 +77,10 @@ export default function MobileNav({
         <span>YOUR PROFILE</span>
         {!user && <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />}
       </button>
-      {profile?.role === 'admin' && (
+      {profile?.role === "admin" && (
         <button
           onClick={() => {
-            setActiveTab('board');
+            setActiveTab("board");
             setMobileMenuOpen(false);
           }}
           className="w-full text-left py-3.5 text-primary-text hover:text-primary flex items-center justify-between font-bold"
@@ -90,7 +90,7 @@ export default function MobileNav({
       )}
       <button
         onClick={() => {
-          setActiveTab('about');
+          setActiveTab("about");
           setMobileMenuOpen(false);
         }}
         className="w-full text-left py-3.5 text-primary hover:text-emerald-600 flex items-center justify-between font-extrabold"
@@ -113,21 +113,10 @@ export default function MobileNav({
           </Button>
         ) : (
           <div className="space-y-2">
-            <div className="flex items-center gap-2.5 p-2 bg-white border border-border">
-              <img
-                src={profile?.avatar_url || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200'}
-                alt="Avatar"
-                className="w-7 h-7 rounded-full object-cover"
-              />
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold truncate">{profile?.full_name}</p>
-                <p className="text-[8.5px] uppercase text-gray-500 font-bold leading-none tracking-wider mt-0.5">{profile?.role}</p>
-              </div>
-            </div>
             <Button
               onClick={() => {
                 signOut();
-                setActiveTab('search');
+                setActiveTab("search");
                 setMobileMenuOpen(false);
               }}
               fullWidth

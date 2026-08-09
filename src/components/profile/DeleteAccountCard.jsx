@@ -7,7 +7,8 @@ import { Trash2 } from 'lucide-react';
 export default function DeleteAccountCard({
   showDeleteConfirm,
   setShowDeleteConfirm,
-  handleDeleteAccount
+  handleDeleteAccount,
+  deleting,
 }) {
   return (
     <div className="bg-white border border-red-200 p-6 shadow-sm space-y-4">
@@ -33,14 +34,16 @@ export default function DeleteAccountCard({
             <button
               type="button"
               onClick={handleDeleteAccount}
-              className="flex-1 bg-red-750 hover:bg-red-850 text-white py-2 text-center transition border border-red-800 cursor-pointer"
+              disabled={deleting}
+              className="flex-1 bg-red-750 hover:bg-red-850 disabled:opacity-60 disabled:cursor-not-allowed text-white py-2 text-center transition border border-red-800 cursor-pointer"
             >
-              Yes, delete my account
+              {deleting ? 'Deleting account...' : 'Yes, delete my account'}
             </button>
             <button
               type="button"
               onClick={() => setShowDeleteConfirm(false)}
-              className="flex-1 bg-white border border-border py-2 text-center text-primary-text hover:bg-gray-50 transition cursor-pointer"
+              disabled={deleting}
+              className="flex-1 bg-white border border-border py-2 text-center text-primary-text hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed transition cursor-pointer"
             >
               Cancel
             </button>

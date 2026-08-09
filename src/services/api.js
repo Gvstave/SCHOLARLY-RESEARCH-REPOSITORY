@@ -1,8 +1,4 @@
 import { supabase, isSupabaseConfigured, disableSupabase } from '../lib/supabase';
-<<<<<<< HEAD
-import { resolveRole } from '../constants/constants';
-=======
->>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
 import { DEFAULT_PROFILES, DEFAULT_PAPERS, DEFAULT_COLLABORATORS } from '../constants/seedData';
 import { getStorageItem, setStorageItem } from '../utils/localStorageHelper';
 
@@ -16,10 +12,8 @@ const shouldUseSupabase = () => {
 const getLocalStorage = (key, defaultValue) => getStorageItem(key, defaultValue);
 const setLocalStorage = (key, value) => setStorageItem(key, value);
 
-export { DEFAULT_PROFILES, DEFAULT_PAPERS, DEFAULT_COLLABORATORS };
-
 // Helper to convert files to local data URLs for high fidelity showcase
-export const fileToDataURL = (file) => {
+const fileToDataURL = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
@@ -31,7 +25,7 @@ export const fileToDataURL = (file) => {
 // --- MULTI-STAGE STORAGE OR FALLBACK FLOW ---
 
 // Help upload generic files
-export const uploadFile = async (bucket, folder, file) => {
+const uploadFile = async (bucket, folder, file) => {
   if (shouldUseSupabase()) {
     try {
       const fileExt = file.name.split('.').pop();
@@ -48,8 +42,7 @@ export const uploadFile = async (bucket, folder, file) => {
         .getPublicUrl(fileName);
 
       return publicUrlData.publicUrl;
-    } catch (err) {
-      console.warn("Supabase uploadFile failed, falling back to local data URL:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -75,8 +68,7 @@ export const getPapers = async () => {
       
       if (error) throw error;
       return data || [];
-    } catch (err) {
-      console.warn("Supabase getPapers failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -187,8 +179,7 @@ export const submitPaper = async (paperData, files, authorId) => {
       }
 
       return paper;
-    } catch (err) {
-      console.warn("Supabase submitPaper failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -263,8 +254,7 @@ export const updatePaperStatus = async (paperId, status, reviewerId) => {
 
       if (error) throw error;
       return;
-    } catch (err) {
-      console.warn("Supabase updatePaperStatus failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -290,8 +280,7 @@ export const deletePaper = async (paperId) => {
         .eq('id', paperId);
       if (error) throw error;
       return;
-    } catch (err) {
-      console.warn("Supabase deletePaper failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -311,16 +300,14 @@ export const trackDownload = async (paperId, userId) => {
 
   if (shouldUseSupabase()) {
     try {
-<<<<<<< HEAD
-      const { data: existing, error: selectErr } = await supabase
-=======
-      const { data: existing, error: _ } = await supabase
->>>>>>> 8219436cc2aa07fbd686926a9c7603c7778a8a3b
+      const { data: existing, error: selectError } = await supabase
         .from('downloads')
         .select('id')
         .eq('user_id', userId)
         .eq('paper_id', paperId)
         .maybeSingle();
+
+      if (selectError) throw selectError;
 
       if (existing) {
         return { alreadyLogged: true };
@@ -338,8 +325,7 @@ export const trackDownload = async (paperId, userId) => {
         paper_id: paperId,
       });
       return { alreadyLogged: false };
-    } catch (err) {
-      console.warn("Supabase trackDownload failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -413,8 +399,7 @@ export const trackCitation = async (paperId, userId) => {
       await supabase.from('papers').update({ citations: (curPaper?.citations || 0) + 1 }).eq('id', paperId);
 
       return { alreadyLogged: false };
-    } catch (err) {
-      console.warn("Supabase trackCitation failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }
@@ -460,30 +445,6 @@ export const trackCitation = async (paperId, userId) => {
   return { alreadyLogged: false };
 };
 
-// --- BIO PROFILE SERVICES ---
-
-export const getProfile = async (userId) => {
-  if (shouldUseSupabase()) {
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
-
-      if (error) throw error;
-      return data;
-    } catch (err) {
-      console.warn("Supabase getProfile failed, falling back to local storage:", err);
-      supabaseFailed = true;
-      disableSupabase();
-    }
-  }
-
-  const localProfiles = getLocalStorage('profiles', DEFAULT_PROFILES);
-  return localProfiles.find(p => p.id === userId) || null;
-};
-
 export const updateProfile = async (userId, profileData, avatarFile) => {
   let avatarUrl = profileData.avatar_url;
 
@@ -509,8 +470,7 @@ export const updateProfile = async (userId, profileData, avatarFile) => {
 
       if (error) throw error;
       return data;
-    } catch (err) {
-      console.warn("Supabase updateProfile failed, falling back to local storage:", err);
+    } catch {
       supabaseFailed = true;
       disableSupabase();
     }

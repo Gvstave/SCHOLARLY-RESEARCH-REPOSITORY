@@ -10,14 +10,14 @@ export default function PaperCard({ paper, onOpen }) {
     >
       <div className="space-y-3">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[11px] tracking-[0.12em] uppercase s font-extrabold text-primary bg-gray-50 border border-border px-2.5 py-0.5">
+          <span className="text-[11px] tracking-[0.12em] uppercase s font-extrabold text-primary">
             {paper.category}
           </span>
           <span className="text-gray-300 s text-sm">&bull;</span>
-          <span className="text-xs s text-gray-400 font-bold uppercase tracking-wider">Published {paper.year}</span>
+          <span className="text-xs s text-gray-500 font-bold uppercase tracking-wider">Published {paper.year}</span>
         </div>
 
-        <h2 className="text-lg sm:text-xl font-semibold leading-snug text-primary group-hover:text-primary transition duration-200 line-clamp-2">
+        <h2 className="text-lg sm:text-xl font-semibold leading-snug text-blue-600  transition duration-200 line-clamp-2">
           {paper.title}
         </h2>
 

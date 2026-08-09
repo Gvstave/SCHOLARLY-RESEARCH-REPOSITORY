@@ -1,14 +1,30 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
+
+const projectDirectory = path.dirname(fileURLToPath(import.meta.url));
+const consoleCallPattern = /\bconsole\.(log|warn|error|info|debug|trace)\b/g;
+
+const silenceVendorConsole = {
+  name: 'silence-vendor-console',
+  renderChunk(code) {
+    return code.includes('console.')
+      ? { code: code.replace(consoleCallPattern, '(() => {})'), map: null }
+      : null;
+  },
+};
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), silenceVendorConsole],
+    esbuild: {
+      drop: ['console', 'debugger'],
+    },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': projectDirectory,
       },
     },
     server: {

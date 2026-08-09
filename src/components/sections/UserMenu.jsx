@@ -28,21 +28,13 @@ export default function UserMenu({
     <div className="flex items-stretch gap-2">
       <div
         onClick={() => setActiveTab('profile')}
-        className="flex items-center gap-2.5 cursor-pointer hover:bg-gray-50 transition bg-white/60 border border-border px-3 py-1.5"
+        className="cursor-pointer transition border border-border p-1 rounded-full hover:bg-green-200"
       >
         <img
           src={profile?.avatar_url || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200'}
           alt="User Portrait"
           className="w-7 h-7 rounded-full object-cover border border-border"
         />
-        <div className="text-left">
-          <p className="text-[10.5px] font-bold text-primary leading-none truncate max-w-30">
-            {profile?.full_name || 'Researcher'}
-          </p>
-          <p className="text-[8px] text-primary font-bold uppercase tracking-widest mt-0.5">
-            {profile?.role === 'admin' ? 'Admin' : 'Researcher'}
-          </p>
-        </div>
       </div>
       <button
         onClick={() => {

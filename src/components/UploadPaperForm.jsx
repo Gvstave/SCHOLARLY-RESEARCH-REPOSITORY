@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../auth';
 import { submitPaper } from '../services/api';
 import { FileText } from 'lucide-react';
 import StatusBanner from './ui/StatusBanner';

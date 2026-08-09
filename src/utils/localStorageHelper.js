@@ -9,8 +9,7 @@ export const getStorageItem = (key, defaultValue = null) => {
     const fullKey = key.startsWith(SANDBOX_KEY_PREFIX) ? key : SANDBOX_KEY_PREFIX + key;
     const data = localStorage.getItem(fullKey);
     return data !== null ? JSON.parse(data) : defaultValue;
-  } catch (e) {
-    console.warn(`Failed to read key "${key}" from localStorage:`, e);
+  } catch {
     return defaultValue;
   }
 };
@@ -20,8 +19,7 @@ export const setStorageItem = (key, value) => {
     const fullKey = key.startsWith(SANDBOX_KEY_PREFIX) ? key : SANDBOX_KEY_PREFIX + key;
     localStorage.setItem(fullKey, JSON.stringify(value));
     return true;
-  } catch (e) {
-    console.error(`Failed to write key "${key}" to localStorage:`, e);
+  } catch {
     return false;
   }
 };
@@ -31,8 +29,7 @@ export const removeStorageItem = (key) => {
     const fullKey = key.startsWith(SANDBOX_KEY_PREFIX) ? key : SANDBOX_KEY_PREFIX + key;
     localStorage.removeItem(fullKey);
     return true;
-  } catch (e) {
-    console.error(`Failed to remove key "${key}" from localStorage:`, e);
+  } catch {
     return false;
   }
 };
