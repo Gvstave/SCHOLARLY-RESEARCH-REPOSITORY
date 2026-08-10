@@ -5,15 +5,26 @@ import App from './App';
 import './index.css';
 
 const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const root = createRoot(document.getElementById('root'));
 
-if (!publishableKey) {
-  throw new Error('An error has occured please reload the app.');
+function ConfigurationError() {
+  return (
+    <main className="min-h-screen grid place-items-center bg-gray-50 px-6 text-center text-gray-900">
+      <section className="max-w-lg rounded-lg border border-red-200 bg-white p-8 shadow-sm">
+        <h1 className="text-xl font-semibold">An error occured please reload the app or <a href="mailto:ilungagustave73@gmail.com" className='text-blue-600 hover:underline'>Contact admin</a></h1>
+      </section>
+    </main>
+  );
 }
 
-createRoot(document.getElementById('root')).render(
+root.render(
   <StrictMode>
-    <ClerkProvider publishableKey={publishableKey} afterSignOutUrl="/">
-      <App />
-    </ClerkProvider>
+    {publishableKey ? (
+      <ClerkProvider publishableKey={publishableKey} afterSignOutUrl="/">
+        <App />
+      </ClerkProvider>
+    ) : (
+      <ConfigurationError />
+    )}
   </StrictMode>,
 );
