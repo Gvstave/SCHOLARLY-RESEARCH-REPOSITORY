@@ -1,6 +1,8 @@
 import React from 'react';
 import { FileText } from 'lucide-react';
 import UserPaperRow from './UserPaperRow';
+import { Trash } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 /**
  * Lists research manuscripts authored by the signed-in user with status badges.
@@ -8,9 +10,9 @@ import UserPaperRow from './UserPaperRow';
 export default function UserPapersList({ loadingPapers, userPapers }) {
   return (
     <div className="lg:col-span-2 space-y-6">
-      <div className="border-b border-border pb-3 flex flex-row justify-between">
+      <div className=" pb-3 flex flex-row justify-between">
         <h2 className="text-2xl font-semibold text-primary">Your Papers</h2>
-        <h2 className="underline text-blue-500"><a href="mailto:ilungagustave73@gmail.com">Remove a Paper</a></h2>
+        <h2 className="underline text-red-500 hover:rotate-10 hover:scale-z-105"><a href="mailto:ilungagustave73@gmail.com" className=''><Trash2 /></a></h2>
       </div>
       {loadingPapers ? (
         <div className="text-center text-primary-text py-14 font-semibold">Loading your papers...</div>

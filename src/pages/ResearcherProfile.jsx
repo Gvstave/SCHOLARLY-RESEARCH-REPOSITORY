@@ -139,8 +139,8 @@ export default function ResearcherProfile() {
     <div className="mx-auto py-6 text-primary space-y-10">
       <header className="border-b border-border pb-6">
         <h1 className="text-4xl font-extralight tracking-tight text-primary">Your Profile</h1>
-        <p className="mt-1 text-primary-text text-xs uppercase tracking-widest flex items-center gap-1.5">
-          <User className="w-3.5 h-3.5 text-gray-500" /> Your details and your papers
+        <p className="mt-3 text-primary-text text-xs uppercase tracking-widest flex items-center gap-1.5">
+         Your details and your papers
         </p>
       </header>
 

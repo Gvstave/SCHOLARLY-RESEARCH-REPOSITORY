@@ -23,5 +23,8 @@
   "devDependencies": {
     "tailwindcss": "^4.1.14",
     "vite": "^6.2.3"
+  },
+  "allowScripts": {
+    "@clerk/shared@3.47.8": true
   }
 }
