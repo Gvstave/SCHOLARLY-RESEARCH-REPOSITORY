@@ -1,11 +1,13 @@
 import React from 'react';
 import { Layers, Check, X } from 'lucide-react';
 import SubmitterEmailBadge from '../ui/SubmitterEmailBadge';
+import { getSafeDocumentUrl } from '../../utils/safeUrl';
 
 /**
  * Component for rendering a single pending paper card in the admin moderation view.
  */
 export default function PendingPaperCard({ paper, actioningId, handleUpdateStatus }) {
+  const manuscriptUrl = getSafeDocumentUrl(paper.file_url);
   return (
     <div className="bg-white border border-border p-6 md:p-8 shadow-sm grid grid-cols-1 lg:grid-cols-4 gap-8">
       <div className="lg:col-span-3 space-y-5 text-left">
@@ -36,14 +38,21 @@ export default function PendingPaperCard({ paper, actioningId, handleUpdateStatu
       </div>
 
       <div className="flex flex-col justify-center gap-3 text-xs">
-        <a
-          href={paper.file_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border border-border py-3 text-center text-primary-text font-semibold hover:bg-gray-50 hover:border-gray-500 transition flex items-center justify-center gap-2"
-        >
-          Open Manuscript
-        </a>
+        {manuscriptUrl ? (
+          <a
+            href={manuscriptUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            referrerPolicy="no-referrer"
+            className="border border-border py-3 text-center text-primary-text font-semibold hover:bg-gray-50 hover:border-gray-500 transition flex items-center justify-center gap-2"
+          >
+            Open Manuscript
+          </a>
+        ) : (
+          <span className="border border-border py-3 text-center text-gray-400 font-semibold" aria-disabled="true">
+            Manuscript unavailable
+          </span>
+        )}
 
         <button
           onClick={() => handleUpdateStatus(paper.id, 'approved')}

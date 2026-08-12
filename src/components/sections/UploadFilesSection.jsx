@@ -23,7 +23,7 @@ export default function UploadFilesSection({ files, onUpdateFiles, coverPreviewU
               'application/pdf',
               'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
               'application/msword'
-            ];
+            ]; 
             const ext = f.name ? '.' + f.name.split('.').pop().toLowerCase() : '';
             return allowedTypes.includes(f.type) || ['.pdf', '.doc', '.docx'].includes(ext);
           }}

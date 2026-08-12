@@ -5,6 +5,7 @@ import DesktopNav from './DesktopNav';
 import UserMenu from './UserMenu';
 import MobileNav from './MobileNav';
 import Logo from '../ui/Logo';
+import logoImage from '../../assets/logo-light.png'
 
 export default function Header({
   activeTab,
@@ -26,7 +27,6 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <Logo onClick={goHome} />
-
           <DesktopNav
             activeTab={activeTab}
             setActiveTab={setActiveTab}

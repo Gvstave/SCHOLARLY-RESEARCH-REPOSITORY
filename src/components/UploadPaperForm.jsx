@@ -88,8 +88,8 @@ export default function UploadPaperForm() {
       });
       setCollaborators([]);
       setFiles({ pdf: null, cover: null });
-    } catch (err) {
-      setStatusMsg({ type: 'error', text: err.message || 'Submission failed.' });
+    } catch {
+      setStatusMsg({ type: 'error', text: 'The submission could not be completed. Please try again.' });
     } finally {
       setSubmitting(false);
     }

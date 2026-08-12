@@ -1,5 +1,5 @@
 import React from 'react';
-import FeatureCard from '../components/ui/FeatureCard';
+import FeatureCard from '../components/cards/FeatureCard';
 import features from '../constants/feature';
 
 export default function AboutUs() {
@@ -8,15 +8,13 @@ export default function AboutUs() {
       <div className="space-y-12">
         {/* Header Section */}
         <div className="space-y-4 border-b border-border pb-8 text-left">
-          <div className="animate- inline-flex items-center gap-2 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-500 rounded">
-            <div className='py-2 px-3'>
-              <h2 className='text-black text-[12px]'>Having an issue or need your work removed? <a href="mailto:ilungagustave73@gmail.com" className='text-blue-500'>Contact Admin</a></h2>
-            </div>
+          <div className='inline-flex items-center gap-2 font-bold uppercase tracking-widest'>
+            <h2 className='text-black text-[12px]'>Having an issue or need your work removed? <a href="mailto:ilungagustave73@gmail.com" className='text-blue-500'>Contact Admin</a></h2>
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold text-primary uppercase tracking-tight my-2">
             The Curated Archive
           </h1>
-          <p className="leading-relaxed text-sm sm:text-base text-gray-600 max-w-3xl">
+          <p className="leading-relaxed text-gray-600 max-w-3xl">
             A quiet, focused repository of academic and scientific literature spanning Zambian universities and independent research groups. All hosted papers are preprint research papers. Administrators curate the repository, checking submissions to identify formatting issues and errors, while enabling readers to engage directly with authors.
           </p>
         </div>
@@ -32,10 +30,10 @@ export default function AboutUs() {
         <div className="space-y-4 pt-8 border-t border-gray-100 text-left">
           <h2 className="font-semibold text-lg sm:text-xl text-primary tracking-tight">Why we built this</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <p className="text-sm sm:text-base leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-gray-600">
               Scientific publishing is often locked behind cost paywalls or lost in complex university systems. The Curated Archive offers a simple, quiet place to share and view research papers directly without distraction.
             </p>
-            <p className="text-sm sm:text-base leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-gray-600">
               By providing easy open access, university affiliation search, and simple checks for errors, we support a friendly, non-commercial environment where scholars can focus on discovering, discussing, and improving great research.
             </p>
           </div>

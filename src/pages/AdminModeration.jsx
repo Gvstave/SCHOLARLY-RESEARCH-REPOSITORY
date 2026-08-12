@@ -55,8 +55,8 @@ export default function AdminModeration() {
       await updatePaperStatus(paperId, newStatus, user.id);
       setPendingPapers((prev) => prev.filter((p) => p.id !== paperId));
       fetchModerationData();
-    } catch (err) {
-      alert(`Update failed: ${err.message}`);
+    } catch {
+      alert('The paper status could not be updated. Please try again.');
     } finally {
       setActioningId(null);
     }
@@ -68,8 +68,8 @@ export default function AdminModeration() {
     try {
       await deletePaper(paperId);
       fetchModerationData();
-    } catch (err) {
-      alert(`Delete failed: ${err.message}`);
+    } catch {
+      alert('The paper could not be deleted. Please try again.');
     }
   };
 

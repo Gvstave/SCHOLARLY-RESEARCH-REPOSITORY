@@ -116,8 +116,8 @@ export default function ResearcherProfile() {
         avatar_url: updated.avatar_url || prev.avatar_url,
         metadata: updated.metadata || prev.metadata,
       }));
-    } catch (err) {
-      setSaveStatus({ type: 'error', text: `Save failed: ${err.message}` });
+    } catch {
+      setSaveStatus({ type: 'error', text: 'Profile changes could not be saved. Please try again.' });
     } finally {
       setSaving(false);
     }
@@ -129,8 +129,8 @@ export default function ResearcherProfile() {
     setSaveStatus({ type: 'info', text: 'Deleting your account...' });
     try {
       await deleteAccount();
-    } catch (err) {
-      setSaveStatus({ type: 'error', text: `Failed to delete account: ${err.message}` });
+    } catch {
+      setSaveStatus({ type: 'error', text: 'The account could not be deleted. Please try again.' });
       setDeletingAccount(false);
     }
   };

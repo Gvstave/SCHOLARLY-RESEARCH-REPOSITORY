@@ -5,6 +5,7 @@ import { PAPER_CATEGORIES } from '../constants/categories';
 import PaperDetails from '../components/sections/PaperDetails';
 import VisitorHero from '../components/sections/VisitorHero';
 import BrowseResults from '../components/sections/BrowseResults';
+import { openDocumentSafely } from '../utils/safeUrl';
 
 export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAuth }) {
   const { user, profile, fetchProfile } = useAuth();
@@ -113,7 +114,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
     if (!user) return;
     try {
       const result = await trackDownload(paper.id, user.id);
-      window.open(paper.file_url, '_blank');
+      openDocumentSafely(paper.file_url);
       if (result && result.alreadyLogged) {
         return;
       }

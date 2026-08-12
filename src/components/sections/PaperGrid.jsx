@@ -1,6 +1,6 @@
 import React from 'react';
 import { SlidersHorizontal } from 'lucide-react';
-import PaperCard from './PaperCard';
+import PaperCard from '../cards/PaperCard';
 
 // A grid of paper cards with loading + empty states.
 export default function PaperGrid({ papers, loading, onOpen, columns = 4 }) {
