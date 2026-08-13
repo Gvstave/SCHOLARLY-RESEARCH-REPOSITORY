@@ -1,5 +1,5 @@
 import React from 'react';
-import FeatureCard from '../components/cards/FeatureCard';
+import FeatureCard from '../components/ui/FeatureCard';
 import features from '../constants/feature';
 
 export default function AboutUs() {
