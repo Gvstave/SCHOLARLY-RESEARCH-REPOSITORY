@@ -18,7 +18,7 @@ export default function UploadContentsSection({ formData, onInputChange }) {
         rows={4}
         placeholder="Briefly describe the problem, your approach, and the main findings..."
         className="py-3"
-        labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
+        labelClassName="text-gray-500 text-sm font-medium block"
         value={formData.abstract}
         onChange={onInputChange}
       />
@@ -31,7 +31,7 @@ export default function UploadContentsSection({ formData, onInputChange }) {
           rows={3}
           placeholder="Background and prior work..."
           className="py-3"
-          labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
+          labelClassName="text-gray-500 text-sm font-medium block"
           value={formData.introduction}
           onChange={onInputChange}
         />
@@ -43,7 +43,7 @@ export default function UploadContentsSection({ formData, onInputChange }) {
           rows={3}
           placeholder="Main takeaways and future work..."
           className="py-3"
-          labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
+          labelClassName="text-gray-500 text-sm font-medium block"
           value={formData.conclusion}
           onChange={onInputChange}
         />

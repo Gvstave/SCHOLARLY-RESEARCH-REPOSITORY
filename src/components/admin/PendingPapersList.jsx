@@ -18,7 +18,7 @@ export default function PendingPapersList({ pendingPapers, loading, actioningId,
         <div className="text-center py-16 border border-dashed border-border bg-gray-50/50">
           <FileSearch className="w-8 h-8 text-gray-500 mx-auto stroke-[1.2] mb-3" />
           <h3 className="text-sm font-semibold text-primary">All caught up</h3>
-          <p className="text-xs text-gray-600 mt-1 uppercase tracking-wider">Nothing to review right now</p>
+          <p className="text-sm text-gray-600 mt-1 ">Nothing to review right now</p>
         </div>
       ) : (
         <div className="space-y-6">

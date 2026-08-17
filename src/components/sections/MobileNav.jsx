@@ -16,8 +16,14 @@ export default function MobileNav({
   setMobileMenuOpen,
   signOut,
 }) {
+  const navItemClass = (isActive) => `w-full max-w-full min-w-0 overflow-hidden text-left py-3.5 flex items-center justify-between gap-3 text-sm font-semibold transition ${
+    isActive
+      ? "text-primary font-extrabold"
+      : "text-gray-500 hover:text-primary"
+  }`;
+
   return (
-    <div className="lg:hidden border-t border-gray-100 bg-gray-50 text-xs uppercase tracking-wider font-bold divide-y divide-gray-100 px-4">
+    <div className="lg:hidden w-full max-w-full overflow-hidden border-t border-gray-100 bg-gray-50 text-sm font-semibold divide-y divide-gray-100 px-4">
       {!user && (
         <button
           onClick={() => {
@@ -25,7 +31,8 @@ export default function MobileNav({
             setBrowseMode(false);
             setMobileMenuOpen(false);
           }}
-          className="w-full text-left py-3.5 text-primary hover:text-emerald-600 block font-extrabold"
+          className={navItemClass(activeTab === "search" && !browseMode)}
+          aria-current={activeTab === "search" && !browseMode ? "page" : undefined}
         >
           HOME
         </button>
@@ -41,9 +48,10 @@ export default function MobileNav({
           setBrowseMode(true);
           setMobileMenuOpen(false);
         }}
-        className="w-full text-left py-3.5 text-primary hover:text-emerald-600 flex items-center justify-between font-extrabold"
+        className={navItemClass(activeTab === "search" && browseMode)}
+        aria-current={activeTab === "search" && browseMode ? "page" : undefined}
       >
-        <span>BROWSE</span>
+        <span className="min-w-0 truncate">BROWSE</span>
         {!user && <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />}
       </button>
 
@@ -57,9 +65,10 @@ export default function MobileNav({
           setActiveTab("submit");
           setMobileMenuOpen(false);
         }}
-        className="w-full text-left py-3.5 text-primary-text hover:text-primary flex items-center justify-between font-bold"
+        className={navItemClass(activeTab === "submit")}
+        aria-current={activeTab === "submit" ? "page" : undefined}
       >
-        <span>SUBMIT PAPER</span>
+        <span className="min-w-0 truncate">SUBMIT</span>
         {!user && <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />}
       </button>
       <button
@@ -72,9 +81,10 @@ export default function MobileNav({
           setActiveTab("profile");
           setMobileMenuOpen(false);
         }}
-        className="w-full text-left py-3.5 text-primary-text hover:text-primary flex items-center justify-between font-bold"
+        className={navItemClass(activeTab === "profile")}
+        aria-current={activeTab === "profile" ? "page" : undefined}
       >
-        <span>YOUR PROFILE</span>
+        <span className="min-w-0 truncate">PROFILE</span>
         {!user && <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />}
       </button>
       {profile?.role === "admin" && (
@@ -83,9 +93,10 @@ export default function MobileNav({
             setActiveTab("board");
             setMobileMenuOpen(false);
           }}
-          className="w-full text-left py-3.5 text-primary-text hover:text-primary flex items-center justify-between font-bold"
+          className={navItemClass(activeTab === "board")}
+          aria-current={activeTab === "board" ? "page" : undefined}
         >
-          <span>ADMIN</span>
+          <span className="min-w-0 truncate">ADMIN</span>
         </button>
       )}
       <button
@@ -93,12 +104,13 @@ export default function MobileNav({
           setActiveTab("about");
           setMobileMenuOpen(false);
         }}
-        className="w-full text-left py-3.5 text-primary hover:text-emerald-600 flex items-center justify-between font-extrabold"
+        className={navItemClass(activeTab === "about")}
+        aria-current={activeTab === "about" ? "page" : undefined}
       >
-        <span>ABOUT US</span>
+        <span className="min-w-0 truncate">ABOUT US</span>
       </button>
 
-      <div className="py-4 space-y-3 font-normal capitalize">
+      <div className="w-full max-w-full min-w-0 overflow-hidden py-4 space-y-3 font-normal">
         {!user ? (
           <Button
             onClick={() => {
@@ -107,12 +119,12 @@ export default function MobileNav({
             }}
             fullWidth
             variant="primary"
-            className="text-[10px] py-2.5"
+            className="max-w-full min-w-0 text-sm py-2.5"
           >
-            Sign In
+            SIGN IN
           </Button>
         ) : (
-          <div className="space-y-2">
+          <div className="w-full max-w-full min-w-0 space-y-2">
             <Button
               onClick={() => {
                 signOut();
@@ -121,10 +133,10 @@ export default function MobileNav({
               }}
               fullWidth
               variant="secondary"
-              className="text-[10px] tracking-[0.2em] py-2.5"
+              className="max-w-full min-w-0 text-sm tracking-[0.2em] py-2.5"
               leftIcon={<LogOut className="w-3.5 h-3.5" />}
             >
-              Sign Out
+              SIGN OUT
             </Button>
           </div>
         )}

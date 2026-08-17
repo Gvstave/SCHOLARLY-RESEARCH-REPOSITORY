@@ -8,7 +8,7 @@ export default function AuthPortal({ onDismiss }) {
         <button
           type="button"
           onClick={onDismiss}
-          className="absolute right-3 top-3 z-10 text-gray-500 hover:text-gray-950 text-xs tracking-widest uppercase font-semibold"
+          className="absolute right-3 top-3 z-10 text-gray-500 hover:text-gray-950 text-sm tracking-widest font-semibold"
           aria-label="Close authentication dialog"
         >
           ✕ Close

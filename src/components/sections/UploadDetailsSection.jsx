@@ -17,7 +17,7 @@ export default function UploadDetailsSection({ formData, onInputChange }) {
         required
         placeholder="e.g. Spectral Signatures of Post-Degenerate White Dwarfs"
         className="text-base py-3"
-        labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
+        labelClassName="text-gray-500 text-sm font-medium block"
         value={formData.title}
         onChange={onInputChange}
       />
@@ -31,7 +31,7 @@ export default function UploadDetailsSection({ formData, onInputChange }) {
           placeholder="Choose one..."
           options={PAPER_CATEGORIES}
           className="py-3"
-          labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
+          labelClassName="text-gray-500 text-sm font-medium block"
           value={formData.category}
           onChange={onInputChange}
         />
@@ -44,7 +44,7 @@ export default function UploadDetailsSection({ formData, onInputChange }) {
           min={1900}
           max={2030}
           className="py-3"
-          labelClassName="text-gray-500 uppercase tracking-wider text-[10px] font-medium block"
+          labelClassName="text-gray-500 text-sm font-medium block"
           value={formData.year}
           onChange={onInputChange}
         />

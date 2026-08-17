@@ -25,7 +25,7 @@ export default function PaperDetails({
       <div className="flex items-center justify-between border-b border-border pb-4 text-sm">
         <button
           onClick={() => setSelectedPaper(null)}
-          className="flex items-center gap-1.5 text-primary hover:underline uppercase font-bold tracking-widest cursor-pointer text-sm"
+          className="flex items-center gap-1.5 text-primary hover:underline font-bold tracking-widest cursor-pointer text-sm"
         >
           ← Back to Papers
         </button>
@@ -33,14 +33,14 @@ export default function PaperDetails({
 
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs uppercase tracking-widest text-primary font-bold bg-gray-50 px-2.5 py-1 border border-border">
+          <span className="text-sm tracking-widest text-primary font-bold bg-gray-50 px-2.5 py-1 border border-border">
             {selectedPaper.category}
           </span>
-          <span className="text-xs uppercase tracking-widest text-gray-400 font-bold bg-gray-50 px-2.5 py-1 border border-border">
+          <span className="text-sm tracking-widest text-gray-400 font-bold bg-gray-50 px-2.5 py-1 border border-border">
             Published {selectedPaper.year}
           </span>
         </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extralight text-primary tracking-tight leading-tight uppercase text-left">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extralight text-primary tracking-tight leading-tight text-left">
           {selectedPaper.title}
         </h1>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-2 text-primary text-sm border-b border-gray-100 pb-4">
@@ -72,7 +72,7 @@ export default function PaperDetails({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
         <div className="md:col-span-2 space-y-8 text-left">
           <div className="space-y-3">
-            <h3 className="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-1.5">
+            <h3 className="text-sm font-bold text-primary tracking-widest flex items-center gap-1.5">
               <Layers className="w-4 h-4 text-primary shrink-0" /> Summary
             </h3>
             <p className="text-base text-primary-text leading-relaxed">{selectedPaper.abstract}</p>
@@ -80,7 +80,7 @@ export default function PaperDetails({
 
           {selectedPaper.introduction && (
             <div className="space-y-3 pt-4 border-t border-gray-100 text-left">
-              <h3 className="text-xs font-bold text-primary uppercase tracking-widest">Introduction</h3>
+              <h3 className="text-sm font-bold text-primary tracking-widest">Introduction</h3>
               <p className="text-base text-primary-text leading-relaxed whitespace-pre-line bg-gray-50 p-5 border border-border font-medium">
                 "{selectedPaper.introduction}"
               </p>

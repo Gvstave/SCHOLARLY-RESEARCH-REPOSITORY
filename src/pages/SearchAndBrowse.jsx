@@ -97,12 +97,15 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
     }
   }, [selectedPaper, initialBrowseAll, loading, isHashInitialized]);
 
-  const q = searchQuery.toLowerCase();
+  const q = searchQuery.trim().toLowerCase();
   const filteredPapers = papers.filter((p) => {
     const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-    const matchesUniv = selectedInstitution === 'All' || p.profiles?.institution === selectedInstitution;
+    const paperInstitution = p.profiles?.institution || 'Independent / Other';
+    const matchesUniv = selectedInstitution === 'All' ||
+      paperInstitution === selectedInstitution ||
+      (selectedInstitution === 'Independent / Other' && paperInstitution === 'Independent');
     const matchesSearch =
-      p.title.toLowerCase().includes(q) ||
+      (p.title || '').toLowerCase().includes(q) ||
       (p.abstract || '').toLowerCase().includes(q) ||
       (p.profiles?.full_name || '').toLowerCase().includes(q) ||
       (p.profiles?.institution || '').toLowerCase().includes(q) ||
