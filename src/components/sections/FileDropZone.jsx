@@ -36,7 +36,7 @@ export default function FileDropZone({
 
   return (
     <div className="space-y-1.5">
-      <label className="text-gray-500 uppercase tracking-widest text-[9.5px] font-bold block">
+      <label className="text-gray-500 tracking-widest text-sm font-bold block">
         {label} {required && <span className="text-amber-700">*</span>}
       </label>
       <div
@@ -69,17 +69,17 @@ export default function FileDropZone({
                 <FileText className="w-5 h-5" />
               </div>
             )}
-            <p className="text-xs font-semibold text-primary-text truncate max-w-xs">{file.name}</p>
-            <p className="text-[10px] text-gray-400 font-mono">
+            <p className="text-sm font-semibold text-primary-text truncate max-w-xs">{file.name}</p>
+            <p className="text-sm text-gray-400 font-mono">
               {(file.size / 1024 / 1024).toFixed(2)} MB
             </p>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center space-y-2">
             <Upload className="w-5 h-5 text-gray-400 stroke-[1.5]" />
-            <p className="text-xs text-primary-text">Drop a file here, or click to choose one</p>
+            <p className="text-sm text-primary-text">Drop a file here, or click to choose one</p>
             {helperText && (
-              <p className="text-[9px] text-gray-500 uppercase tracking-wider">{helperText}</p>
+              <p className="text-sm text-gray-500 ">{helperText}</p>
             )}
           </div>
         )}

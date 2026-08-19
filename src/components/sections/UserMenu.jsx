@@ -17,7 +17,7 @@ export default function UserMenu({
       <Button
         onClick={() => setShowAuthOverlay(true)}
         variant="primary"
-        className="text-[11px] tracking-[0.24em] px-7 py-3 shadow-sm"
+        className="text-sm tracking-[0.24em] px-7 py-3 shadow-sm"
       >
         SIGN IN
       </Button>
@@ -25,7 +25,7 @@ export default function UserMenu({
   }
 
   return (
-    <div className="flex items-stretch gap-2">
+    <div className="flex max-w-full min-w-0 items-stretch gap-2 overflow-hidden">
       <div
         onClick={() => setActiveTab('profile')}
         className="cursor-pointer transition border border-border p-1 rounded-full hover:bg-green-200"
@@ -41,10 +41,10 @@ export default function UserMenu({
           signOut();
           setActiveTab('search');
         }}
-        className="flex items-center gap-2 px-3 py-1.5 border border-border hover:border-red-200 hover:bg-red-50 text-gray-600 hover:text-red-600 transition shrink-0 cursor-pointer bg-white text-[10px] font-bold uppercase tracking-[0.15em]"
+        className="flex max-w-full min-w-0 items-center gap-2 overflow-hidden whitespace-nowrap px-3 py-1.5 border border-border hover:border-red-200 hover:bg-red-50 text-gray-600 hover:text-red-600 transition shrink-0 cursor-pointer bg-white text-sm font-bold tracking-[0.15em]"
       >
         <LogOut className="w-3.5 h-3.5" />
-        <span>SIGN OUT</span>
+        <span className="min-w-0 truncate">SIGN OUT</span>
       </button>
     </div>
   );

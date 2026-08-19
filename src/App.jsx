@@ -45,7 +45,7 @@ function ArchiveApp() {
       />
 
       {/* Main Container Workspace */}
-      <main className="grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <main className="grow mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <Suspense fallback={<Loader />}>
         {activeTab === 'search' && (
           <SearchAndBrowse initialBrowseAll={browseMode} onRequireAuth={() => setShowAuthOverlay(true)} />

@@ -20,7 +20,7 @@ export default function UserPapersList({ loadingPapers, userPapers }) {
         <div className="text-center py-20 border border-dashed border-border bg-gray-50">
           <FileText className="w-8 h-8 text-gray-500 mx-auto stroke-[1.2] mb-3" />
           <h3 className="text-sm font-semibold text-primary">No papers yet</h3>
-          <p className="text-xs text-gray-600 mt-1 uppercase tracking-wider">You haven't submitted any papers</p>
+          <p className="text-sm text-gray-600 mt-1 ">You haven't submitted any papers</p>
         </div>
       ) : (
         <div className="space-y-4">

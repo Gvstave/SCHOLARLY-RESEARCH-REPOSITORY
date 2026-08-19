@@ -24,8 +24,8 @@ export default function Header({
 
   return (
     <nav className="border-b border-gray-100 bg-white/95 backdrop-blur-md sticky top-0 z-40 transition-shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
+      <div className="mx-auto px-2 lg:px-8">
+        <div className="flex justify-between gap-4 h-20 items-center min-w-0 overflow-hidden">
           <Logo onClick={goHome} />
           <DesktopNav
             activeTab={activeTab}
@@ -37,7 +37,7 @@ export default function Header({
             setShowAuthOverlay={setShowAuthOverlay}
           />
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 max-w-full min-w-0 shrink-0 overflow-hidden">
             <UserMenu
               user={user}
               profile={profile}

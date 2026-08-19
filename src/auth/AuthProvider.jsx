@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useClerk, useUser } from '@clerk/clerk-react';
+import { useClerk, useSession, useUser } from '@clerk/clerk-react';
 import { AuthContext } from './AuthContext';
 import { adaptClerkUser } from './clerkUserAdapter';
 import { loadOrCreateProfile, clearActiveProfile } from './profileService';
 import { clearUserData } from './accountDeletionService';
+import { setSupabaseAccessTokenProvider } from '../lib/supabase';
 
 export function AuthProvider({ children }) {
   const { isLoaded, isSignedIn, user: clerkUser } = useUser();
+  const { session } = useSession();
   const clerk = useClerk();
   const user = useMemo(
     () => adaptClerkUser(isSignedIn ? clerkUser : null),
@@ -14,6 +16,11 @@ export function AuthProvider({ children }) {
   );
   const [profile, setProfile] = useState(null);
   const [profileLoading, setProfileLoading] = useState(false);
+
+  useEffect(() => {
+    setSupabaseAccessTokenProvider(() => session?.getToken() ?? null);
+    return () => setSupabaseAccessTokenProvider(null);
+  }, [session]);
 
   const fetchProfile = useCallback(async (_userId = user?.id, currentUser = user) => {
     if (!currentUser) {
@@ -23,7 +30,7 @@ export function AuthProvider({ children }) {
 
     setProfileLoading(true);
     try {
-      const nextProfile = loadOrCreateProfile(currentUser, clerkUser);
+      const nextProfile = await loadOrCreateProfile(currentUser, clerkUser);
       setProfile(nextProfile);
       return nextProfile;
     } finally {

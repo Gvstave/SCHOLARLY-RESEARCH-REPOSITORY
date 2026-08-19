@@ -8,10 +8,10 @@ export default function AboutUs() {
       <div className="space-y-12">
         {/* Header Section */}
         <div className="space-y-4 border-b border-border pb-8 text-left">
-          <div className='inline-flex items-center gap-2 font-bold uppercase tracking-widest'>
-            <h2 className='text-black text-[12px]'>Having an issue or need your work removed? <a href="mailto:ilungagustave73@gmail.com" className='text-blue-500'>Contact Admin</a></h2>
+          <div className='inline-flex items-center gap-2 font-bold tracking-widest'>
+            <h2 className='text-black text-sm'>Having an issue or need your work removed? <a href="mailto:ilungagustave73@gmail.com" className='text-blue-500'>Contact Admin</a></h2>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold text-primary uppercase tracking-tight my-2">
+          <h1 className="text-3xl sm:text-4xl font-semibold text-primary tracking-tight my-2">
             The Curated Archive
           </h1>
           <p className="leading-relaxed text-gray-600 max-w-3xl">

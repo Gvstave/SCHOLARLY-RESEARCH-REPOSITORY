@@ -43,7 +43,9 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
     }
   };
 
-  useEffect(() => { fetchApprovedPapers(); }, []);
+  useEffect(() => { 
+    fetchApprovedPapers(); 
+  }, []);
 
   useEffect(() => {
     setShowResultsAnyway(!!(initialBrowseAll && user));
@@ -97,12 +99,15 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
     }
   }, [selectedPaper, initialBrowseAll, loading, isHashInitialized]);
 
-  const q = searchQuery.toLowerCase();
+  const q = searchQuery.trim().toLowerCase();
   const filteredPapers = papers.filter((p) => {
     const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-    const matchesUniv = selectedInstitution === 'All' || p.profiles?.institution === selectedInstitution;
+    const paperInstitution = p.profiles?.institution || 'Independent / Other';
+    const matchesUniv = selectedInstitution === 'All' ||
+      paperInstitution === selectedInstitution ||
+      (selectedInstitution === 'Independent / Other' && paperInstitution === 'Independent');
     const matchesSearch =
-      p.title.toLowerCase().includes(q) ||
+      (p.title || '').toLowerCase().includes(q) ||
       (p.abstract || '').toLowerCase().includes(q) ||
       (p.profiles?.full_name || '').toLowerCase().includes(q) ||
       (p.profiles?.institution || '').toLowerCase().includes(q) ||
@@ -120,7 +125,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
       }
       setPapers(prev => prev.map(x => x.id === paper.id ? { ...x, downloads: x.downloads + 1 } : x));
       if (selectedPaper?.id === paper.id) setSelectedPaper(s => s ? { ...s, downloads: s.downloads + 1 } : null);
-    } catch {}
+    } catch { }
   };
 
   const handleCite = async (paper) => {
@@ -138,7 +143,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
       }
       setPapers(prev => prev.map(x => x.id === paper.id ? { ...x, citations: x.citations + 1 } : x));
       if (selectedPaper?.id === paper.id) setSelectedPaper(s => s ? { ...s, citations: s.citations + 1 } : null);
-    } catch {}
+    } catch { }
   };
 
   // ---- PAPER DETAIL VIEW ----

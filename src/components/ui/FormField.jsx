@@ -28,7 +28,7 @@ export default function FormField({
   const isSelect = type === 'select';
 
   // Base styles for label
-  const labelStyles = labelClassName || "text-primary-text uppercase tracking-widest text-[9.5px] font-bold block mb-1";
+  const labelStyles = labelClassName || "text-primary-text tracking-widest text-sm font-bold block mb-1";
 
   // Base input classes
   const inputBaseClasses = `w-full text-sm border border-border px-4 py-2.5 text-primary bg-white focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition duration-150 disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed`;
@@ -112,7 +112,7 @@ export default function FormField({
       </div>
 
       {helperText && (
-        <p className="text-[10px] text-gray-400 mt-1">{helperText}</p>
+        <p className="text-sm text-gray-400 mt-1">{helperText}</p>
       )}
     </div>
   );

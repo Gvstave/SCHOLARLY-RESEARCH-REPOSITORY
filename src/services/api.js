@@ -394,9 +394,8 @@ export const trackCitation = async (paperId, userId) => {
 
       if (updateErr) throw updateErr;
 
-      // Increment citation
-      const { data: curPaper } = await supabase.from('papers').select('citations').eq('id', paperId).single();
-      await supabase.from('papers').update({ citations: (curPaper?.citations || 0) + 1 }).eq('id', paperId);
+      const { error: citationError } = await supabase.rpc('increment_citations', { row_id: paperId });
+      if (citationError) throw citationError;
 
       return { alreadyLogged: false };
     } catch {

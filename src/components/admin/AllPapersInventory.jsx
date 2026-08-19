@@ -13,7 +13,7 @@ export default function AllPapersInventory({ papers, handleDeletePaper }) {
       </h2>
 
       {papers.length === 0 ? (
-        <div className="text-center py-10 text-gray-500 text-xs uppercase tracking-wider">
+        <div className="text-center py-10 text-gray-500 text-sm ">
           No papers yet.
         </div>
       ) : (

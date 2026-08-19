@@ -15,7 +15,7 @@ export default function DesktopNav({
   setShowAuthOverlay,
 }) {
   return (
-    <div className="hidden lg:flex items-center space-x-10 text-[10px] font-extrabold tracking-[0.22em] text-primary uppercase">
+    <div className="hidden lg:flex flex-1 min-w-0 max-w-full items-center justify-center gap-5 xl:gap-10 overflow-hidden text-sm font-semibold text-primary">
       {!user && (
         <NavButton
           isActive={activeTab === 'search' && !browseMode}

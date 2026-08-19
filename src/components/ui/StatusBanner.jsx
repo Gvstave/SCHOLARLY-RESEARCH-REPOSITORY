@@ -20,7 +20,7 @@ export default function StatusBanner({ type, text, heading }) {
   const title = heading || HEADINGS[type] || HEADINGS.info;
 
   return (
-    <div className={`p-4 border text-xs flex items-start gap-2.5 ${style}`}>
+    <div className={`p-4 border text-sm flex items-start gap-2.5 ${style}`}>
       {type === 'success' ? (
         <CheckCircle className="w-4 h-4 shrink-0 stroke-[2.5]" />
       ) : type === 'error' ? (
@@ -29,8 +29,8 @@ export default function StatusBanner({ type, text, heading }) {
         <div className="w-4 h-4 rounded-full border border-gray-600 border-t-transparent animate-spin shrink-0" />
       )}
       <div className="space-y-0.5">
-        <p className="font-semibold tracking-wide uppercase">{title}</p>
-        <p className="text-[11px] text-gray-600 leading-relaxed">{text}</p>
+        <p className="font-semibold tracking-wide ">{title}</p>
+        <p className="text-sm text-gray-600 leading-relaxed">{text}</p>
       </div>
     </div>
   );

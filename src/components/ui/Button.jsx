@@ -8,8 +8,8 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-  sm: 'px-3 py-1.5 text-[10px]',
-  md: 'px-4 py-2.5 text-xs',
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2.5 text-sm',
   lg: 'px-6 py-3 text-sm',
 };
 
@@ -38,7 +38,7 @@ export default function Button({
       type={finalType}
       disabled={disabled}
       className={cn(
-        'inline-flex items-center justify-center gap-1.5 transition duration-200 cursor-pointer font-bold uppercase tracking-widest',
+        'inline-flex items-center justify-center gap-1.5 transition duration-200 cursor-pointer font-bold tracking-widest',
         variantClasses[variant] || variantClasses.primary,
         sizeClasses[size] || sizeClasses.md,
         fullWidth && 'w-full',

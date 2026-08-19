@@ -82,12 +82,12 @@ export default function AdminModeration() {
       <header className="border-b border-border pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="text-left">
           <h1 className="text-4xl font-extralight tracking-tight text-primary">Admin — Review Papers</h1>
-          <p className="mt-1 text-gray-500 text-xs uppercase tracking-widest flex items-center gap-1.5">
+          <p className="mt-1 text-gray-500 text-sm tracking-widest flex items-center gap-1.5">
             <Eye className="w-3.5 h-3.5 text-gray-500" /> Curate and manage submissions
           </p>
         </div>
         <div className="flex items-center gap-2.5">
-          <span className="text-xs bg-primary text-gray-100 border border-gray-950 px-3.5 py-1.5 font-semibold tracking-wider uppercase">
+          <span className="text-sm bg-primary text-gray-100 border border-gray-950 px-3.5 py-1.5 font-semibold ">
             Signed in as {profile?.full_name || 'Admin'}
           </span>
         </div>

@@ -9,11 +9,11 @@ export default function UserPaperRow({ paper }) {
   return (
     <div className="bg-white border border-border p-6 flex flex-col md:flex-row md:items-center justify-between shadow-sm gap-4 hover:border-gray-500 transition text-left">
       <div className="space-y-1">
-        <span className="text-[9px] uppercase tracking-widest font-bold text-primary-text block">
+        <span className="text-sm tracking-widest font-bold text-primary-text block">
           {paper.category} &bull; Submitted {new Date(paper.created_at).toLocaleDateString()}
         </span>
         <h3 className="text-lg font-normal text-primary leading-snug">{paper.title}</h3>
-        <div className="text-[10.5px] text-primary-text flex items-center gap-3 mt-1">
+        <div className="text-sm text-primary-text flex items-center gap-3 mt-1">
           <span>{paper.downloads || 0} downloads</span>
           <span>&bull;</span>
           <span>{paper.citations || 0} citations</span>

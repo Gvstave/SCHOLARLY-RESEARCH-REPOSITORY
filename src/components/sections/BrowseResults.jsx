@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchFilters from './SearchFilters';
 import PaperGrid from './PaperGrid';
+import SideNav from '../SideNav';
 
 export default function BrowseResults({
   user,
@@ -19,34 +20,38 @@ export default function BrowseResults({
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 py-4 text-primary">
-      <header className="border-b border-border pb-6 flex flex-col md:flex-row md:items-baseline justify-between gap-4">
-        <div className="space-y-1 text-left">
-          {!user && (
-            <button onClick={resetSearch} className="text-primary hover:underline text-xs font-bold tracking-widest uppercase mr-3 cursor-pointer">
-              ← Back to search
-            </button>
-          )}
-          <h1 className="text-2xl font-extralight tracking-tight text-primary uppercase leading-none mt-2">Browse Papers</h1>
-          <p className="text-primary text-xs tracking-[0.2em] uppercase flex items-center gap-1.5 font-bold mt-3">{filteredPapers.length} of {papers.length} papers
-          </p>
-        </div>
-      </header>
-
-      <SearchFilters
-        inputRef={inputRef}
+    <div className="flex flex-col md:flex-row items-start gap-6 w-full">
+      <SideNav
         {...filters}
-        setSearchQuery={actions.setSearchQuery}
         setSelectedCategory={actions.setSelectedCategory}
         setSelectedInstitution={actions.setSelectedInstitution}
+        filteredPapers={filteredPapers}
+        papers={papers}
       />
-
-      <PaperGrid
-        papers={filteredPapers}
-        loading={loading}
-        onOpen={actions.setSelectedPaper}
-        columns={user ? 4 : 3}
-      />
+      <main className="w-full min-w-0 flex-1 space-y-8 py-4 text-primary">
+        <header className="border-b border-border pb-6 flex flex-col md:flex-row items-start justify-between gap-4">
+          <div className="space-y-1 text-left">
+            {!user && (
+              <button onClick={resetSearch} className="text-primary underline text-sm font-bold tracking-widest mr-3 cursor-pointer">
+                ← Back to search
+              </button>
+            )}
+            <h1 className="text-2xl font-extralight tracking-tight text-primary leading-none mt-2">Browse Papers</h1>
+          </div>
+          <SearchFilters
+            inputRef={inputRef}
+            {...filters}
+            setSearchQuery={actions.setSearchQuery}
+            setSelectedCategory={actions.setSelectedCategory}
+            setSelectedInstitution={actions.setSelectedInstitution}
+          />
+        </header>
+        <PaperGrid
+          papers={filteredPapers}
+          loading={loading}
+          onOpen={actions.setSelectedPaper}
+        />
+      </main>
     </div>
   );
 }

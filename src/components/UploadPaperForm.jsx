@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../auth';
 import { submitPaper } from '../services/api';
-import { FileText } from 'lucide-react';
 import StatusBanner from './ui/StatusBanner';
 import CollaboratorFormSection from './sections/CollaboratorFormSection';
 import UploadDetailsSection from './sections/UploadDetailsSection';
@@ -99,8 +98,8 @@ export default function UploadPaperForm() {
     <div className="max-w-4xl mx-auto border border-border p-6 md:p-10 md:rounded-xl">
       <div className="border-b border-gray-100 pb-5 mb-8 text-center md:text-left">
         <h2 className="text-3xl font-extralight tracking-tight text-primary">Submit a Paper</h2>
-        <p className="text-gray-500 text-[11px] uppercase tracking-wider mt-1.5 flex items-center justify-center md:justify-start gap-1">
-          <FileText className="w-3.5 h-3.5 text-gray-400" /> Vetted by administrators for inconsistencies and errors before indexing
+        <p className="text-gray-500 text-sm mt-1.5">
+          Vetted by administrators for inconsistencies and errors before indexing
         </p>
       </div>
 
@@ -129,7 +128,7 @@ export default function UploadPaperForm() {
         />
 
         <div className="space-y-6">
-          <div className="text-[12px] uppercase tracking-wider text-primary font-bold border-b border-border pb-2">4. Co-authors</div>
+          <div className="text-sm text-primary font-bold border-b border-border pb-2">4. Co-authors</div>
           <CollaboratorFormSection
             collaborators={collaborators}
             onUpdateCollaborators={setCollaborators}
@@ -140,7 +139,7 @@ export default function UploadPaperForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-primary border border-gray-950 text-white text-xs uppercase tracking-widest py-4 hover:bg-primary hover:text-white font-medium hover:shadow-md transition duration-300 disabled:bg-gray-300 disabled:border-border"
+          className="w-full bg-primary border border-gray-950 text-white text-sm tracking-widest py-4 hover:bg-primary hover:text-white font-medium hover:shadow-md transition duration-300 disabled:bg-gray-300 disabled:border-border"
         >
           {submitting ? 'Submitting...' : 'Submit for review'}
         </button>

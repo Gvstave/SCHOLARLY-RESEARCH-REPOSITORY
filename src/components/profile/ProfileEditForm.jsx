@@ -28,7 +28,7 @@ export default function ProfileEditForm({
             alt="Avatar"
             className="w-24 h-24 rounded-full object-cover border-2 border-border shadow-sm"
           />
-          <label className="absolute inset-0 bg-primary/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer text-[10px] text-white uppercase font-bold tracking-wider">
+          <label className="absolute inset-0 bg-primary/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer text-sm text-white font-bold ">
             Change
             <input type="file" accept="image/*" onChange={handleAvatarSelect} className="hidden" />
           </label>
@@ -36,10 +36,10 @@ export default function ProfileEditForm({
 
         <div className="space-y-1">
           <h3 className="text-xl font-semibold text-primary">{profileData.fullName || 'Your name'}</h3>
-          <p className="text-primary-text text-xs">{profileData.institution || 'No institution set'}</p>
-          <p className="text-primary-text font-semibold uppercase text-[9px] tracking-widest">{profileData.specialty || 'Research area'}</p>
+          <p className="text-primary-text text-sm">{profileData.institution || 'No institution set'}</p>
+          <p className="text-primary-text font-semibold text-sm tracking-widest">{profileData.specialty || 'Research area'}</p>
           <div className="pt-1.5">
-            <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 ${profile?.role === 'admin' ? 'bg-primary text-white' : 'bg-[#FAF8F3] text-primary-text border border-border'}`}>
+            <span className={`text-sm font-bold px-2.5 py-1 ${profile?.role === 'admin' ? 'bg-primary text-white' : 'bg-[#FAF8F3] text-primary-text border border-border'}`}>
               {profile?.role === 'admin' ? 'Admin' : 'Researcher'}
             </span>
           </div>
@@ -56,13 +56,13 @@ export default function ProfileEditForm({
         }
       />
 
-      <form onSubmit={handleSave} className="space-y-4 text-xs">
+      <form onSubmit={handleSave} className="space-y-4 text-sm">
         <FormField
           label="Full name"
           required
           placeholder="e.g. Prof. Arthur Dent"
           icon={User}
-          className="py-2 text-xs"
+          className="py-2 text-sm"
           value={profileData.fullName}
           onChange={(e) => setProfileData({ ...profileData, fullName: e.target.value })}
         />
@@ -72,7 +72,7 @@ export default function ProfileEditForm({
           required
           placeholder="e.g. University of Zambia"
           icon={Landmark}
-          className="py-2 text-xs"
+          className="py-2 text-sm"
           value={profileData.institution}
           onChange={(e) => setProfileData({ ...profileData, institution: e.target.value })}
         />
@@ -81,7 +81,7 @@ export default function ProfileEditForm({
           label="Research area"
           placeholder="e.g. Theoretical particle physics"
           icon={BookOpen}
-          className="py-2 text-xs"
+          className="py-2 text-sm"
           value={profileData.specialty}
           onChange={(e) => setProfileData({ ...profileData, specialty: e.target.value })}
         />
@@ -91,7 +91,7 @@ export default function ProfileEditForm({
           type="textarea"
           rows={4}
           placeholder="A short bio about your background and research focus..."
-          className="p-2.5 text-xs"
+          className="p-2.5 text-sm"
           value={profileData.about_author}
           onChange={(e) => setProfileData({ ...profileData, about_author: e.target.value })}
         />
@@ -111,8 +111,8 @@ export default function ProfileEditForm({
             checked={showEmail}
             onChange={(e) => setShowEmail(e.target.checked)}
           />
-          <label htmlFor="show-email-toggle" className="text-[11.5px] text-primary-text leading-tight cursor-pointer select-none">
-            <span className="font-semibold block text-primary text-xs">Allow visibility on my papers</span>
+          <label htmlFor="show-email-toggle" className="text-sm text-primary-text leading-tight cursor-pointer select-none">
+            <span className="font-semibold block text-primary text-sm">Allow visibility on my papers</span>
             Let other signed-in users see my email on my public papers so they can contact me for collaboration.
           </label>
         </div>
@@ -120,7 +120,7 @@ export default function ProfileEditForm({
         <button
           type="submit"
           disabled={saving}
-          className="w-full bg-primary border border-primary text-white uppercase py-2.5 font-bold tracking-widest hover:opacity-90 disabled:opacity-50"
+          className="w-full bg-primary border border-primary text-white py-2.5 font-bold tracking-widest hover:opacity-90 disabled:opacity-50"
         >
           {saving ? 'Saving...' : 'Save profile'}
         </button>

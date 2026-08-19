@@ -29,7 +29,7 @@ export default function PaperStatusBadge({ status, variant = 'boxed', className 
       : 'bg-[#FAF8F3] text-[#786121] border-[#EDE7D9]';
 
   return (
-    <span className={`text-[10px] uppercase tracking-widest px-3 py-1 font-bold border flex items-center gap-1.5 rounded-xs w-fit ${styleClass} ${className}`}>
+    <span className={`text-sm tracking-widest px-3 py-1 font-bold border flex items-center gap-1.5 rounded-xs w-fit ${styleClass} ${className}`}>
       {status === 'approved' ? (
         <>
           <CheckCircle className="w-3.5 h-3.5 shrink-0" /> Approved
