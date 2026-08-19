@@ -30,13 +30,13 @@ export default function VisitorHero({
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-gray-400 font-bold tracking-widest">
-          <span className="text-primary tracking-[0.25em] font-extrabold text-sm">TOPICS:</span>
+        <div className="flex flex-wrap items-center justify-center gap-3 text-gray-400">
+          <span className="text-primary text-sm font-semibold">TOPICS:</span>
           {categories.filter(c => c !== 'All').map((c) => (
             <button
               key={c}
               onClick={() => setSelectedCategory(c)}
-              className="hover:text-primary cursor-pointer transition text-sm text-gray-500 font-bold tracking-widest"
+              className="hover:text-primary cursor-pointer transition text-gray-500"
             >
               {c}
             </button>

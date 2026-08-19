@@ -1,14 +1,14 @@
-import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
 
 function getSupabase() {
-  if (!isSupabaseConfigured || !supabase) throw new Error('Supabase is not configured.');
+  if (!supabase) throw new Error('Supabase is not configured.');
   return supabase;
 }
 
 async function uploadFile(bucket, folder, file) {
   const client = getSupabase();
-  const extension = file.name.split('.').pop();
-  const path = `${folder}/${crypto.randomUUID()}.${extension}`;
+  const extension = file.name.match(/\.([a-z0-9]+)$/i)?.[1]?.toLowerCase();
+  const path = `${folder}/${crypto.randomUUID()}${extension ? `.${extension}` : ''}`;
   const { error } = await client.storage.from(bucket).upload(path, file, {
     cacheControl: '3600', upsert: false,
   });

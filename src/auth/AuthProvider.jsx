@@ -21,27 +21,27 @@ export function AuthProvider({ children }) {
     return () => setSupabaseAccessTokenProvider(null);
   }, [session]);
 
-  const fetchProfile = useCallback(async (_userId = user?.id, currentUser = user) => {
-    if (!currentUser) {
+  const fetchProfile = useCallback(async () => {
+    if (!user) {
       setProfile(null);
       return null;
     }
 
     setProfile((currentProfile) => (
-      currentProfile?.id === currentUser.id ? currentProfile : null
+      currentProfile?.id === user.id ? currentProfile : null
     ));
     try {
-      const nextProfile = await loadOrCreateProfile(currentUser, clerkUser);
+      const nextProfile = await loadOrCreateProfile(user, clerkUser);
       setProfile(nextProfile);
       return nextProfile;
     } finally {
-      setResolvedProfileUserId(currentUser.id);
+      setResolvedProfileUserId(user.id);
     }
   }, [user, clerkUser]);
 
   useEffect(() => {
     if (!isLoaded || !isSessionLoaded) return;
-    if (user && session) fetchProfile(user.id, user);
+    if (user && session) fetchProfile();
     else {
       setProfile(null);
       setResolvedProfileUserId(null);

@@ -45,8 +45,8 @@ function ArchiveApp() {
       />
 
       {/* Main Container Workspace */}
-      <main className="grow mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <Suspense fallback={<Loader />}>
+      <main className="grow flex flex-col mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <Suspense fallback={<Loader page />}>
         {activeTab === 'search' && (
           <SearchAndBrowse initialBrowseAll={browseMode} onRequireAuth={() => setShowAuthOverlay(true)} />
         )}
@@ -80,7 +80,7 @@ function ArchiveApp() {
 
       {/* Authenticator Overlay Gate */}
       {showAuthOverlay && (
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
           <AuthPortal onDismiss={() => {
             setShowAuthOverlay(false);
             if (activeTab === 'submit' || activeTab === 'profile' || activeTab === 'board') {

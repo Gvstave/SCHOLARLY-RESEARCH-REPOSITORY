@@ -1,4 +1,4 @@
-import { isSupabaseConfigured, supabase } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
 
 const DEFAULT_AVATAR = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200';
 
@@ -19,7 +19,7 @@ function createProfile(user, clerkUser) {
 }
 
 export async function loadOrCreateProfile(user, clerkUser) {
-  if (!isSupabaseConfigured || !supabase) throw new Error('Supabase is not configured.');
+  if (!supabase) throw new Error('Supabase is not configured.');
   const profile = createProfile(user, clerkUser);
 
   const { data: existing, error: readError } = await supabase
@@ -49,6 +49,15 @@ export async function loadOrCreateProfile(user, clerkUser) {
     .select()
     .single();
 
-  if (insertError) throw insertError;
-  return { ...profile, ...created };
+  if (!insertError) return { ...profile, ...created };
+  if (insertError.code !== '23505') throw insertError;
+
+  const { data: concurrentProfile, error: retryError } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  if (retryError) throw retryError;
+  return { ...profile, ...concurrentProfile };
 }

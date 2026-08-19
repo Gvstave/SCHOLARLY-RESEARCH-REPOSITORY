@@ -8,7 +8,6 @@ export function adaptClerkUser(clerkUser) {
     user_metadata: {
       full_name: clerkUser.fullName || clerkUser.username || email,
       institution: clerkUser.publicMetadata?.institution,
-      role: clerkUser.publicMetadata?.role,
     },
   };
 }

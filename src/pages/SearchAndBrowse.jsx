@@ -139,7 +139,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
     try {
       const result = await trackCitation(paper.id, user.id);
       if (fetchProfile) {
-        await fetchProfile(user.id);
+        await fetchProfile();
       }
       if (result && result.alreadyLogged) {
         return;
