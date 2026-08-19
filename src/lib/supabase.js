@@ -22,7 +22,15 @@ export function disableSupabase() {
   isSupabaseConfigured = false;
 }
 
+let accessTokenProvider = async () => null;
+
+export function setSupabaseAccessTokenProvider(provider) {
+  accessTokenProvider = typeof provider === 'function' ? provider : async () => null;
+}
+
 export const supabase = isSupabaseConfigured 
-  ? createClient(supabaseUrl, supabaseAnonKey) 
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      accessToken: () => accessTokenProvider(),
+    })
   : null;
 

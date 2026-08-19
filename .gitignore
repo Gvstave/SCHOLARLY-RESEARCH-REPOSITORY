@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Local Supabase schema, migrations, project link, and reset scripts
+supabase/

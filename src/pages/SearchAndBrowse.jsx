@@ -43,7 +43,9 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
     }
   };
 
-  useEffect(() => { fetchApprovedPapers(); }, []);
+  useEffect(() => { 
+    fetchApprovedPapers(); 
+  }, []);
 
   useEffect(() => {
     setShowResultsAnyway(!!(initialBrowseAll && user));
@@ -123,7 +125,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
       }
       setPapers(prev => prev.map(x => x.id === paper.id ? { ...x, downloads: x.downloads + 1 } : x));
       if (selectedPaper?.id === paper.id) setSelectedPaper(s => s ? { ...s, downloads: s.downloads + 1 } : null);
-    } catch {}
+    } catch { }
   };
 
   const handleCite = async (paper) => {
@@ -141,7 +143,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
       }
       setPapers(prev => prev.map(x => x.id === paper.id ? { ...x, citations: x.citations + 1 } : x));
       if (selectedPaper?.id === paper.id) setSelectedPaper(s => s ? { ...s, citations: s.citations + 1 } : null);
-    } catch {}
+    } catch { }
   };
 
   // ---- PAPER DETAIL VIEW ----
