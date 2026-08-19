@@ -50,7 +50,6 @@ export default function BrowseResults({
           papers={filteredPapers}
           loading={loading}
           onOpen={actions.setSelectedPaper}
-          columns={user ? 4 : 3}
         />
       </main>
     </div>

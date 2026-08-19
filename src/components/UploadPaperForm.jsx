@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../auth';
 import { submitPaper } from '../services/api';
-import { FileText } from 'lucide-react';
 import StatusBanner from './ui/StatusBanner';
 import CollaboratorFormSection from './sections/CollaboratorFormSection';
 import UploadDetailsSection from './sections/UploadDetailsSection';
