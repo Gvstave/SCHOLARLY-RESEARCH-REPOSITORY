@@ -19,9 +19,11 @@ export default function AdminModeration() {
   const [approvedCount, setApprovedCount] = useState(0);
   const [totalDownloads, setTotalDownloads] = useState(0);
   const [totalCitations, setTotalCitations] = useState(0);
+  const [loadError, setLoadError] = useState('');
 
   const fetchModerationData = async () => {
     setLoading(true);
+    setLoadError('');
     try {
       const allPapers = await getPapers();
       setPapers(allPapers);
@@ -36,9 +38,10 @@ export default function AdminModeration() {
       setApprovedCount(allPapers.filter((p) => p.status === 'approved').length);
       setTotalDownloads(downloadsSum);
       setTotalCitations(citationsSum);
-    } catch {
+    } catch (error) {
       setPapers([]);
       setPendingPapers([]);
+      setLoadError(error?.message || 'The moderation queue could not be loaded.');
     } finally {
       setLoading(false);
     }
@@ -92,6 +95,13 @@ export default function AdminModeration() {
           </span>
         </div>
       </header>
+
+      {loadError && (
+        <div className="border border-red-200 bg-red-50 p-4 text-sm text-red-800" role="alert">
+          <p className="font-semibold">Could not load Supabase submissions</p>
+          <p className="mt-1">{loadError}</p>
+        </div>
+      )}
 
       {/* 1. Moderation stats summary */}
       <ModerationStats

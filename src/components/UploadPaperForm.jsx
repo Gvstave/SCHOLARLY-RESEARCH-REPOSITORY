@@ -87,8 +87,11 @@ export default function UploadPaperForm() {
       });
       setCollaborators([]);
       setFiles({ pdf: null, cover: null });
-    } catch {
-      setStatusMsg({ type: 'error', text: 'The submission could not be completed. Please try again.' });
+    } catch (error) {
+      setStatusMsg({
+        type: 'error',
+        text: error?.message || 'The submission could not be completed. Please try again.',
+      });
     } finally {
       setSubmitting(false);
     }

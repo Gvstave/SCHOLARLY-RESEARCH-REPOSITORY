@@ -54,8 +54,12 @@ export default function ResearcherProfile() {
       const allPapers = await getPapers();
       const owned = allPapers.filter((p) => p.author_id === user.id);
       setUserPapers(owned);
-    } catch {
+    } catch (error) {
       setUserPapers([]);
+      setSaveStatus({
+        type: 'error',
+        text: error?.message || 'Your papers could not be loaded from Supabase.',
+      });
     } finally {
       setLoadingPapers(false);
     }
@@ -116,8 +120,11 @@ export default function ResearcherProfile() {
         avatar_url: updated.avatar_url || prev.avatar_url,
         metadata: updated.metadata || prev.metadata,
       }));
-    } catch {
-      setSaveStatus({ type: 'error', text: 'Profile changes could not be saved. Please try again.' });
+    } catch (error) {
+      setSaveStatus({
+        type: 'error',
+        text: error?.message || 'Profile changes could not be saved. Please try again.',
+      });
     } finally {
       setSaving(false);
     }

@@ -18,6 +18,7 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
   const [selectedPaper, setSelectedPaper] = useState(null);
   const [showResultsAnyway, setShowResultsAnyway] = useState(false);
   const [isHashInitialized, setIsHashInitialized] = useState(false);
+  const [loadError, setLoadError] = useState('');
 
   const inputRef = useCallback((node) => {
     if (node) {
@@ -32,12 +33,14 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
 
   const fetchApprovedPapers = async () => {
     setLoading(true);
+    setLoadError('');
     try {
       const allPapers = await getPapers();
       const approved = allPapers.filter(p => p.status === 'approved');
       setPapers(approved);
-    } catch {
+    } catch (error) {
       setPapers([]);
+      setLoadError(error?.message || 'The paper catalog could not be loaded.');
     } finally {
       setLoading(false);
     }
@@ -147,6 +150,15 @@ export default function SearchAndBrowse({ initialBrowseAll = false, onRequireAut
   };
 
   // ---- PAPER DETAIL VIEW ----
+  if (loadError) {
+    return (
+      <div className="mx-auto my-8 max-w-3xl border border-red-200 bg-red-50 p-5 text-sm text-red-800" role="alert">
+        <p className="font-semibold">Could not load the Supabase catalog</p>
+        <p className="mt-1">{loadError}</p>
+      </div>
+    );
+  }
+
   if (selectedPaper) {
     return (
       <PaperDetails
