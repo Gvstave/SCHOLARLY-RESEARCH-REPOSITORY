@@ -2,20 +2,19 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useClerk, useSession, useUser } from '@clerk/clerk-react';
 import { AuthContext } from './AuthContext';
 import { adaptClerkUser } from './clerkUserAdapter';
-import { loadOrCreateProfile, clearActiveProfile } from './profileService';
-import { clearUserData } from './accountDeletionService';
+import { loadOrCreateProfile } from './profileService';
 import { setSupabaseAccessTokenProvider } from '../lib/supabase';
 
 export function AuthProvider({ children }) {
   const { isLoaded, isSignedIn, user: clerkUser } = useUser();
-  const { session } = useSession();
+  const { isLoaded: isSessionLoaded, session } = useSession();
   const clerk = useClerk();
   const user = useMemo(
     () => adaptClerkUser(isSignedIn ? clerkUser : null),
     [isSignedIn, clerkUser]
   );
   const [profile, setProfile] = useState(null);
-  const [profileLoading, setProfileLoading] = useState(false);
+  const [resolvedProfileUserId, setResolvedProfileUserId] = useState(null);
 
   useEffect(() => {
     setSupabaseAccessTokenProvider(() => session?.getToken() ?? null);
@@ -28,35 +27,38 @@ export function AuthProvider({ children }) {
       return null;
     }
 
-    setProfileLoading(true);
+    setProfile((currentProfile) => (
+      currentProfile?.id === currentUser.id ? currentProfile : null
+    ));
     try {
       const nextProfile = await loadOrCreateProfile(currentUser, clerkUser);
       setProfile(nextProfile);
       return nextProfile;
     } finally {
-      setProfileLoading(false);
+      setResolvedProfileUserId(currentUser.id);
     }
   }, [user, clerkUser]);
 
   useEffect(() => {
-    if (!isLoaded) return;
-    if (user) fetchProfile(user.id, user);
+    if (!isLoaded || !isSessionLoaded) return;
+    if (user && session) fetchProfile(user.id, user);
     else {
-      clearActiveProfile();
       setProfile(null);
+      setResolvedProfileUserId(null);
     }
-  }, [isLoaded, user?.id, fetchProfile]);
+  }, [isLoaded, isSessionLoaded, session?.id, user?.id, fetchProfile]);
 
   const signOut = useCallback(async () => {
-    clearActiveProfile();
     await clerk.signOut();
+    setProfile(null);
+    setResolvedProfileUserId(null);
   }, [clerk]);
 
   const deleteAccount = useCallback(async () => {
     if (!clerkUser) return;
-    const userId = clerkUser.id;
     await clerkUser.delete();
-    clearUserData(userId);
+    setProfile(null);
+    setResolvedProfileUserId(null);
   }, [clerkUser]);
 
   const value = {
@@ -64,7 +66,9 @@ export function AuthProvider({ children }) {
     user,
     profile,
     fetchProfile,
-    loading: !isLoaded || profileLoading,
+    loading: !isLoaded
+      || !isSessionLoaded
+      || Boolean(user && resolvedProfileUserId !== user.id),
     signOut,
     deleteAccount,
   };

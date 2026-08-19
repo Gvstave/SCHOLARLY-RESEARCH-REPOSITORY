@@ -29,7 +29,7 @@ function ArchiveApp() {
   const handleRedirectToAuth = () => setShowAuthOverlay(true);
 
   if (loading) {
-    return <Loader />;
+    return <Loader fullScreen />;
   }
 
   return (

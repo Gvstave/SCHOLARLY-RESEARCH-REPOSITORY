@@ -4,7 +4,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
 // Dynamically check if Supabase is configured with valid credentials
-export let isSupabaseConfigured = !!(
+export const isSupabaseConfigured = !!(
   supabaseUrl && 
   supabaseUrl.trim() !== '' && 
   supabaseUrl.startsWith('https://') &&
@@ -17,10 +17,6 @@ export let isSupabaseConfigured = !!(
   !supabaseAnonKey.includes('YOUR_SUPABASE_ANON_KEY') &&
   !supabaseAnonKey.includes('your-supabase-anon-key')
 );
-
-export function disableSupabase() {
-  isSupabaseConfigured = false;
-}
 
 let accessTokenProvider = async () => null;
 

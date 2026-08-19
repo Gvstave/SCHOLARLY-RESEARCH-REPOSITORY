@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ClerkProvider } from '@clerk/clerk-react';
 import App from './App';
@@ -6,6 +5,12 @@ import './index.css';
 
 const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const root = createRoot(document.getElementById('root'));
+
+// Purge data created by the retired browser-only database fallback while
+// preserving Clerk's authentication storage.
+Object.keys(localStorage)
+  .filter((key) => key.startsWith('curated_archive_'))
+  .forEach((key) => localStorage.removeItem(key));
 
 function ConfigurationError() {
   return (
@@ -18,13 +23,11 @@ function ConfigurationError() {
 }
 
 root.render(
-  <StrictMode>
-    {publishableKey ? (
-      <ClerkProvider publishableKey={publishableKey} afterSignOutUrl="/">
-        <App />
-      </ClerkProvider>
-    ) : (
-      <ConfigurationError />
-    )}
-  </StrictMode>,
+  publishableKey ? (
+    <ClerkProvider publishableKey={publishableKey} afterSignOutUrl="/">
+      <App />
+    </ClerkProvider>
+  ) : (
+    <ConfigurationError />
+  ),
 );
