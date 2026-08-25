@@ -9,25 +9,25 @@ const root = createRoot(document.getElementById('root'));
 // Purge data created by the retired browser-only database fallback while
 // preserving Clerk's authentication storage.
 Object.keys(localStorage)
-  .filter((key) => key.startsWith('curated_archive_'))
-  .forEach((key) => localStorage.removeItem(key));
+ .filter((key) => key.startsWith('curated_archive_'))
+ .forEach((key) => localStorage.removeItem(key));
 
 function ConfigurationError() {
-  return (
-    <main className="min-h-screen grid place-items-center bg-gray-50 px-6 text-center text-gray-900">
-      <section className="max-w-lg rounded-lg border border-red-200 bg-white p-8 shadow-sm">
-        <h1 className="text-xl font-semibold">An error occured please reload the app or <a href="mailto:ilungagustave73@gmail.com" className='text-blue-600 hover:underline'>Contact admin</a></h1>
-      </section>
-    </main>
-  );
+ return (
+  <main className="min-h-screen grid place-items-center bg-gray-50 px-6 text-center  ">
+   <section className="max-w-lg rounded-lg border border-red-200 bg-white p-8 shadow-sm">
+    <h1 className="  ">An error occured please reload the app or <a href="mailto:ilungagustave73@gmail.com" className='text-blue-600 hover:underline'>Contact admin</a></h1>
+   </section>
+  </main>
+ );
 }
 
 root.render(
-  publishableKey ? (
-    <ClerkProvider publishableKey={publishableKey} afterSignOutUrl="/">
-      <App />
-    </ClerkProvider>
-  ) : (
-    <ConfigurationError />
-  ),
+ publishableKey ? (
+  <ClerkProvider publishableKey={publishableKey} afterSignOutUrl="/">
+   <App />
+  </ClerkProvider>
+ ) : (
+  <ConfigurationError />
+ ),
 );

@@ -1,23 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
-
+  --font-sans: Roboto, Trebuchet MS, sans-serif;
   /* Custom brand identifier */
-  --color-primary: #101828;
+  --color-primary: #0d224c;
   /* --color-primary: #2c4a75; */
-  --color-primary-text: #1E293B;
+  --color-primary-text: #0d224c;
   --color-primary-muted: #5A6D8C;
   --color-emerald-600: #495B7A;
   --color-border: #e5e7eb;
 }
 
-body {
-  background-color: #FFFFFF !important;
-  color: #1E293B !important;
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  body {
+    background-color: #FFFFFF;
+    color: #0d224c;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 300;
+  }
+
+  .nav-button {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  span,
+  p,
+  button,
+  input,
+  textarea {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.625rem;
+  }
+
+  label {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    font-weight: 300;
+  }
+
+  h1 {
+    font-size: 3.125rem;
+    line-height: 3.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-weight: 300;
+  }
 }
 
 /* Premium selection style */
@@ -31,21 +70,23 @@ body {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #FFFFFF;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #E2E8F0;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #CBD5E1;
 }
 
 /* Selection using gray tone */
 ::selection {
-  background-color: rgba(148, 163, 184, 0.2) !important; /* var(--color-gray-400) */
+  background-color: rgba(148, 163, 184, 0.2) !important;
+  /* var(--color-gray-400) */
   color: var(--color-primary) !important;
 }
-
-
