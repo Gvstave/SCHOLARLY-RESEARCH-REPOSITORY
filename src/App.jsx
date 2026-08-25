@@ -16,89 +16,89 @@ const AboutUs = lazy(() => import('./pages/AboutUs'));
 const AuthPortal = lazy(() => import('./components/AuthPortal'));
 
 function ArchiveApp() {
-  const { user, loading } = useAuth();
+ const { user, loading } = useAuth();
 
-  const { activeTab, setActiveTab, browseMode, setBrowseMode } = useHashNavigation(user, loading);
-  const [showAuthOverlay, setShowAuthOverlay] = useState(false);
-  useDocumentMetadata(activeTab, browseMode);
+ const { activeTab, setActiveTab, browseMode, setBrowseMode } = useHashNavigation(user, loading);
+ const [showAuthOverlay, setShowAuthOverlay] = useState(false);
+ useDocumentMetadata(activeTab, browseMode);
 
-  useEffect(() => {
-    if (user) setShowAuthOverlay(false);
-  }, [user]);
+ useEffect(() => {
+  if (user) setShowAuthOverlay(false);
+ }, [user]);
 
-  const handleRedirectToAuth = () => setShowAuthOverlay(true);
+ const handleRedirectToAuth = () => setShowAuthOverlay(true);
 
-  if (loading) {
-    return <Loader fullScreen />;
-  }
+ if (loading) {
+  return <Loader fullScreen />;
+ }
 
-  return (
-    <div className="min-h-screen bg-white text-[#242A38] flex flex-col justify-between selection:bg-gray-100">
+ return (
+  <div className="min-h-screen bg-white text-[#242A38] flex flex-col justify-between selection:bg-gray-100">
 
-      {/* Editorial Header bar */}
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        browseMode={browseMode}
-        setBrowseMode={setBrowseMode}
-        setShowAuthOverlay={setShowAuthOverlay}
-      />
+   {/* Editorial Header bar */}
+   <Header
+    activeTab={activeTab}
+    setActiveTab={setActiveTab}
+    browseMode={browseMode}
+    setBrowseMode={setBrowseMode}
+    setShowAuthOverlay={setShowAuthOverlay}
+   />
 
-      {/* Main Container Workspace */}
-      <main className="grow mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <Suspense fallback={<Loader />}>
-        {activeTab === 'search' && (
-          <SearchAndBrowse initialBrowseAll={browseMode} onRequireAuth={() => setShowAuthOverlay(true)} />
-        )}
+   {/* Main Container Workspace */}
+   <main className="grow mx-auto w-full">
+    <Suspense fallback={<Loader />}>
+    {activeTab === 'search' && (
+     <SearchAndBrowse initialBrowseAll={browseMode} onRequireAuth={() => setShowAuthOverlay(true)} />
+    )}
 
-        {activeTab === 'submit' && (
-          <ProtectedRoute onRedirectToAuth={handleRedirectToAuth}>
-            <UploadPaperForm />
-          </ProtectedRoute>
-        )}
+    {activeTab === 'submit' && (
+     <ProtectedRoute onRedirectToAuth={handleRedirectToAuth}>
+      <UploadPaperForm />
+     </ProtectedRoute>
+    )}
 
-        {activeTab === 'profile' && (
-          <ProtectedRoute onRedirectToAuth={handleRedirectToAuth}>
-            <ResearcherProfile />
-          </ProtectedRoute>
-        )}
+    {activeTab === 'profile' && (
+     <ProtectedRoute onRedirectToAuth={handleRedirectToAuth}>
+      <ResearcherProfile />
+     </ProtectedRoute>
+    )}
 
-        {activeTab === 'board' && (
-          <AdminRoute onRedirectToAuth={handleRedirectToAuth}>
-            <AdminModeration />
-          </AdminRoute>
-        )}
+    {activeTab === 'board' && (
+     <AdminRoute onRedirectToAuth={handleRedirectToAuth}>
+      <AdminModeration />
+     </AdminRoute>
+    )}
 
-        {activeTab === 'about' && (
-          <AboutUs />
-        )}
-        </Suspense>
-      </main>
+    {activeTab === 'about' && (
+     <AboutUs />
+    )}
+    </Suspense>
+   </main>
 
-      {/* Editorial Footer Layout */}
-      <Footer />
+   {/* Editorial Footer Layout */}
+   <Footer />
 
-      {/* Authenticator Overlay Gate */}
-      {showAuthOverlay && (
-        <Suspense fallback={<Loader />}>
-          <AuthPortal onDismiss={() => {
-            setShowAuthOverlay(false);
-            if (activeTab === 'submit' || activeTab === 'profile' || activeTab === 'board') {
-              setActiveTab('search');
-              setBrowseMode(false);
-            }
-          }} />
-        </Suspense>
-      )}
+   {/* Authenticator Overlay Gate */}
+   {showAuthOverlay && (
+    <Suspense fallback={<Loader />}>
+     <AuthPortal onDismiss={() => {
+      setShowAuthOverlay(false);
+      if (activeTab === 'submit' || activeTab === 'profile' || activeTab === 'board') {
+       setActiveTab('search');
+       setBrowseMode(false);
+      }
+     }} />
+    </Suspense>
+   )}
 
-    </div>
-  );
+  </div>
+ );
 }
 
 export default function App() {
-  return (
-    <AuthProvider>
-      <ArchiveApp />
-    </AuthProvider>
-  );
+ return (
+  <AuthProvider>
+   <ArchiveApp />
+  </AuthProvider>
+ );
 }
