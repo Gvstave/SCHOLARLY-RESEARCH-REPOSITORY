@@ -143,7 +143,7 @@ export default function ResearcherProfile() {
  };
 
  return (
-  <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 text-primary space-y-10">
+  <div className="px-4 sm:px-8 lg:px-8 py-8 text-primary space-y-10 mx-auto">
    <header className="border-b border-border pb-6">
     <h1 className="  text-primary">Your Profile</h1>
     <p className="mt-3 text-primary-text  flex items-center gap-1.5">

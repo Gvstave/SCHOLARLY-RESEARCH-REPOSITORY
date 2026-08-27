@@ -3,9 +3,9 @@
 @theme {
   --font-sans: Roboto, Trebuchet MS, sans-serif;
   /* Custom brand identifier */
-  --color-primary: #0d224c;
+  --color-primary: #000;
   /* --color-primary: #2c4a75; */
-  --color-primary-text: #0d224c;
+  --color-primary-text: #000;
   --color-primary-muted: #5A6D8C;
   --color-emerald-600: #495B7A;
   --color-border: #e5e7eb;
@@ -14,7 +14,7 @@
 @layer base {
   body {
     background-color: #FFFFFF;
-    color: #0d224c;
+    color: #000;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     font-weight: 300;
@@ -33,7 +33,7 @@
   textarea {
     font-size: 1rem;
     font-weight: 100;
-    line-height: 1.625rem;
+    line-height: 1.5rem;
   }
 
   label {

@@ -1,7 +1,7 @@
-import React from 'react';
 import { Layers } from 'lucide-react';
 import PaperDetailsStats from './PaperDetailsStats';
 import PaperDetailsActions from './PaperDetailsActions';
+import { ChevronRight } from 'lucide-react';
 
 export default function PaperDetails({
  selectedPaper,
@@ -21,26 +21,26 @@ export default function PaperDetails({
  const alreadyCited = profile?.metadata && Array.isArray(profile.metadata) && profile.metadata.map(String).includes(String(selectedPaper.id));
 
  return (
-  <div className="max-w-4xl mx-auto space-y-8 py-6 text-primary">
+  <div className="max-w-4xl mx-auto space-y-8 text-primary px-4 sm:px-8 lg:px-8 py-8">
    <div className="flex items-center justify-between border-b border-border pb-4 ">
     <button
      onClick={() => setSelectedPaper(null)}
-     className="flex items-center gap-1.5 text-primary hover:underline  cursor-pointer "
+     className="flex flex-row items-center gap-2 text-primary hover:underline cursor-pointer"
     >
-     ← Back to Papers
+     <ChevronRight /> Back to Papers
     </button>
    </div>
 
    <div className="space-y-4">
     <div className="flex flex-wrap items-center gap-2">
-     <span className=" text-primary bg-gray-50 px-2.5 py-1 border border-border">
+     <span className="text-primary bg-gray-50 px-2.5 py-1 border border-border">
       {selectedPaper.category}
      </span>
-     <span className="   bg-gray-50 px-2.5 py-1 border border-border">
+     <span className="bg-gray-50 px-2.5 py-1 border border-border">
       Published {selectedPaper.year}
      </span>
     </div>
-    <h1 className="  sm:  md:   text-primary  text-left">
+    <h1 className="text-primary text-left">
      {selectedPaper.title}
     </h1>
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-2 text-primary border-b border-gray-100 pb-4">
