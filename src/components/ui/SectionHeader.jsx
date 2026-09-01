@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 // Numbered / titled section header used inside long forms.
 export default function SectionHeader({ children }) {

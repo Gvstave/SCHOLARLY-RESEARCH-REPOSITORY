@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 /**
  * PaperDetailsStats sub-component displaying download and citation counts.

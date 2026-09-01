@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useClerk, useSession, useUser } from '@clerk/clerk-react';
 import { AuthContext } from './AuthContext';
 import { adaptClerkUser } from './clerkUserAdapter';

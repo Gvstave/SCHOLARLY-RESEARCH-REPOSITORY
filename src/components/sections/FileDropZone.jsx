@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Upload, FileText } from 'lucide-react';
 
 // A single drag-and-drop file picker. Used for the manuscript PDF

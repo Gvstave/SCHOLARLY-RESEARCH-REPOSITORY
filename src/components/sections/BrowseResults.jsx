@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import SearchFilters from './SearchFilters';
 import PaperGrid from './PaperGrid';
 import SideNav from '../SideNav';

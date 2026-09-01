@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { SlidersHorizontal } from 'lucide-react';
 import PaperCard from '../cards/PaperCard';
 
