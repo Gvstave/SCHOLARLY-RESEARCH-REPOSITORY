@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { Layers, Check, X } from 'lucide-react';
 import SubmitterEmailBadge from '../ui/SubmitterEmailBadge';
 import { getSafeDocumentUrl } from '../../utils/safeUrl';

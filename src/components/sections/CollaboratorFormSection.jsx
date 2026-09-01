@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Plus, Trash2, User, Landmark, Mail, Users } from 'lucide-react';
 import FormField from '../ui/FormField';
 

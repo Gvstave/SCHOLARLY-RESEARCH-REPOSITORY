@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import SectionHeader from '../ui/SectionHeader';
 import FileDropZone from './FileDropZone';
 

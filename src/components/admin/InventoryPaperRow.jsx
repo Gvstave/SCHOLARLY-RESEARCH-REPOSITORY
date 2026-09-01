@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { Trash2 } from 'lucide-react';
 import PaperStatusBadge from '../ui/PaperStatusBadge';
 import SubmitterEmailBadge from '../ui/SubmitterEmailBadge';

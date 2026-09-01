@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { updateProfile, getPapers } from '../services/api';
 import { useAuth } from '../auth';
-import { User } from 'lucide-react';
 import ProfileEditForm from '../components/profile/ProfileEditForm';
 import DeleteAccountCard from '../components/profile/DeleteAccountCard';
 import UserPapersList from '../components/profile/UserPapersList';

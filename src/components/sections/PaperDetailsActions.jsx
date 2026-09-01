@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { Download, Lock, Quote } from 'lucide-react';
 import Button from '../ui/Button';
 

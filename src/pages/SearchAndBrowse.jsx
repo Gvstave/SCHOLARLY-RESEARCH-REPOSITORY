@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getPapers, trackDownload, trackCitation } from '../services/api';
 import { useAuth } from '../auth';
 import { PAPER_CATEGORIES } from '../constants/categories';

@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { ShieldAlert, FileSearch } from 'lucide-react';
 import PendingPaperCard from './PendingPaperCard';
 

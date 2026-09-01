@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { Search } from 'lucide-react';
 
 // Search bar used in the browse results header.

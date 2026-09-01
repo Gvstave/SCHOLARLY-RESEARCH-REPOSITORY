@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getPapers, updatePaperStatus, deletePaper } from '../services/api';
 import { useAuth } from '../auth';
 import { Eye } from 'lucide-react';

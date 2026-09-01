@@ -1,17 +1,16 @@
-import React from 'react';
-import { User, Landmark, BookOpen } from 'lucide-react';
+ import { User, Landmark, BookOpen } from 'lucide-react';
 import FormField from '../ui/FormField';
 import StatusBanner from '../ui/StatusBanner';
 
 /**
  * Subcomponent managing profile updates, bios, specialties, and email visibility.
  */
+
 export default function ProfileEditForm({
  profile,
  profileData,
  setProfileData,
  avatarPreview,
- handleAvatarSelect,
  showEmail,
  setShowEmail,
  userEmail,
@@ -24,14 +23,10 @@ export default function ProfileEditForm({
    <div className="flex flex-col items-center text-center space-y-4">
     <div className="relative group">
      <img
-      src={avatarPreview || profileData.avatar_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200'}
+      src={avatarPreview || profileData.avatar_url || "https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"}
       alt="Avatar"
       className="w-24 h-24 rounded-full object-cover border-2 border-border shadow-sm"
      />
-     <label className="absolute inset-0 bg-primary/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer text-white ">
-      Change
-      <input type="file" accept="image/*" onChange={handleAvatarSelect} className="hidden" />
-     </label>
     </div>
 
     <div className="space-y-1">

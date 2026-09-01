@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { Quote, ArrowUpRight } from 'lucide-react';
 
 // A single paper card used in search results.

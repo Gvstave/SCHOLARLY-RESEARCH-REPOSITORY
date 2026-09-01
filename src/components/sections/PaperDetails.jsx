@@ -1,7 +1,6 @@
-import { Layers } from 'lucide-react';
+import { ChevronLeft, Layers } from 'lucide-react';
 import PaperDetailsStats from './PaperDetailsStats';
 import PaperDetailsActions from './PaperDetailsActions';
-import { ChevronRight } from 'lucide-react';
 
 export default function PaperDetails({
  selectedPaper,
@@ -27,7 +26,7 @@ export default function PaperDetails({
      onClick={() => setSelectedPaper(null)}
      className="flex flex-row items-center gap-2 text-primary hover:underline cursor-pointer"
     >
-     <ChevronRight /> Back to Papers
+     <ChevronLeft /> Back to Papers
     </button>
    </div>
 

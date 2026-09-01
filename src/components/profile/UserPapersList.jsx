@@ -1,7 +1,6 @@
-import React from 'react';
+ 
 import { FileText } from 'lucide-react';
 import UserPaperRow from './UserPaperRow';
-import { Trash } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 
 /**

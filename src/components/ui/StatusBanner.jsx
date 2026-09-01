@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { CheckCircle, AlertCircle } from 'lucide-react';
 
 // Info / success / error banner used by the submission and profile forms.

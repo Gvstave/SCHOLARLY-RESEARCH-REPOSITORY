@@ -43,13 +43,15 @@
   }
 
   h1 {
-    font-size: 3.125rem;
-    line-height: 3.75rem;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    line-height: 1.1;
+    font-weight: 400;
   }
 
   h2 {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    font-weight: 400;
   }
 
   h3 {

@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { LogOut } from 'lucide-react';
 import Button from '../ui/Button';
 
@@ -8,8 +8,8 @@ import Button from '../ui/Button';
 export default function UserMenu({
  user,
  profile,
- signOut,
- setActiveTab,
+ onSignOut,
+ onProfile,
  setShowAuthOverlay,
 }) {
  if (!user) {
@@ -27,20 +27,17 @@ export default function UserMenu({
  return (
   <div className="flex max-w-full min-w-0 items-stretch gap-2 overflow-hidden">
    <div
-    onClick={() => setActiveTab('profile')}
+    onClick={onProfile}
     className="cursor-pointer transition border border-border p-1 rounded-full hover:bg-green-200"
    >
     <img
-     src={profile?.avatar_url || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200'}
+     src={profile?.avatar_url || 'https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg'}
      alt="User Portrait"
      className="w-7 h-7 rounded-full object-cover border border-border"
     />
    </div>
    <button
-    onClick={() => {
-     signOut();
-     setActiveTab('search');
-    }}
+    onClick={onSignOut}
     className="flex max-w-full min-w-0 items-center gap-2 overflow-hidden whitespace-nowrap px-3 py-1.5 border border-border hover:border-red-200 hover:bg-red-50   hover:text-red-600 transition shrink-0 cursor-pointer bg-white"
    >
     <LogOut className="w-3.5 h-3.5" />
