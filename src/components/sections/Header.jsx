@@ -8,37 +8,34 @@ import Logo from '../ui/Logo';
 
 export default function Header({
     activeTab,
-    setActiveTab,
     browseMode,
-    setBrowseMode,
+    onNavigate,
     setShowAuthOverlay,
 }) {
     const { user, profile, signOut } = useAuth();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const goHome = () => {
-        setActiveTab('search');
-        setBrowseMode(false);
+        onNavigate('/');
     };
 
     const goBrowse = () => {
         if (!user) { setShowAuthOverlay(true); return; }
-        setActiveTab('search');
-        setBrowseMode(true);
+        onNavigate('/browse');
     };
 
     const goSubmit = () => {
         if (!user) { setShowAuthOverlay(true); return; }
-        setActiveTab('submit');
+        onNavigate('/submit');
     };
 
     const goProfile = () => {
         if (!user) { setShowAuthOverlay(true); return; }
-        setActiveTab('profile');
+        onNavigate('/profile');
     };
 
-    const goAbout = () => setActiveTab('about');
-    const goBoard = () => setActiveTab('board');
+    const goAbout = () => onNavigate('/about');
+    const goBoard = () => onNavigate('/admin');
     const handleSignOut = () => { signOut(); goHome(); };
 
     return (

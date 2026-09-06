@@ -1,5 +1,6 @@
 import { useAuth } from '../auth';
 import Loader from './ui/Loader';
+import AccessNotice from './ui/AccessNotice';
 
 export const ProtectedRoute = ({ children, onRedirectToAuth }) => {
  const { user, loading } = useAuth();
@@ -10,19 +11,12 @@ export const ProtectedRoute = ({ children, onRedirectToAuth }) => {
 
  if (!user) {
   return (
-   <div className="min-h-[50vh] flex flex-col items-center justify-center text-center p-8 bg-gray-50 border border-gray-100 my-8 max-w-2xl mx-auto">
-    <h3 className="  text-primary ">Please sign in</h3>
-    <p className="  mt-2">This page is for signed-in researchers</p>
-    <p className="mt-4   max-w-md">
-     Sign in to submit a paper, view your profile, or download the full text of a paper.
-    </p>
-    <button
-     onClick={onRedirectToAuth}
-     className="mt-6 bg-primary text-white  px-6 py-2.5 hover:bg-gray-800 transition"
-    >
-     Sign in
-    </button>
-   </div>
+     <AccessNotice
+        title="Please sign in"
+        summary="This page is for signed-in researchers"
+        details="Sign in to submit a paper, view your profile, or download the full text of a paper."
+        onSignIn={onRedirectToAuth}
+     />
   );
  }
 

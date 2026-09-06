@@ -16,7 +16,6 @@ export default function BrowseResults({
         actions.setSearchQuery('');
         actions.setSelectedCategory('All');
         actions.setSelectedInstitution('All');
-        actions.setShowResultsAnyway(false);
     };
 
     return (
@@ -40,16 +39,14 @@ export default function BrowseResults({
                     </div>
                     <SearchFilters
                         inputRef={inputRef}
-                        {...filters}
+                        searchQuery={filters.searchQuery}
                         setSearchQuery={actions.setSearchQuery}
-                        setSelectedCategory={actions.setSelectedCategory}
-                        setSelectedInstitution={actions.setSelectedInstitution}
                     />
                 </header>
                 <PaperGrid
                     papers={filteredPapers}
                     loading={loading}
-                    onOpen={actions.setSelectedPaper}
+                    onOpen={actions.openPaper}
                 />
             </main>
         </div>

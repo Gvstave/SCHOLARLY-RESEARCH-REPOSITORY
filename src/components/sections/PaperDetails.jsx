@@ -4,7 +4,7 @@ import PaperDetailsActions from './PaperDetailsActions';
 
 export default function PaperDetails({
  selectedPaper,
- setSelectedPaper,
+ onBack,
  user,
  profile,
  onRequireAuth,
@@ -23,7 +23,7 @@ export default function PaperDetails({
   <div className="max-w-4xl mx-auto space-y-8 text-primary px-4 sm:px-8 lg:px-8 py-8">
    <div className="flex items-center justify-between border-b border-border pb-4 ">
     <button
-     onClick={() => setSelectedPaper(null)}
+    onClick={onBack}
      className="flex flex-row items-center gap-2 text-primary hover:underline cursor-pointer"
     >
      <ChevronLeft /> Back to Papers
