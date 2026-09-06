@@ -6,6 +6,7 @@ import CollaboratorFormSection from './sections/CollaboratorFormSection';
 import UploadDetailsSection from './sections/UploadDetailsSection';
 import UploadContentsSection from './sections/UploadContentsSection';
 import UploadFilesSection from './sections/UploadFilesSection';
+import Button from './ui/Button';
 
 /**
  * Main form for research paper manuscript submission.
@@ -142,13 +143,15 @@ export default function UploadPaperForm() {
                         />
                     </div>
 
-                    <button
+                    <Button
                         type="submit"
                         disabled={submitting}
-                        className="w-full bg-primary border border-gray-950 text-white  py-4 hover:bg-primary hover:text-white  hover:shadow-md transition duration-300 disabled:bg-gray-300 disabled:border-border"
+                        fullWidth
+                        size="lg"
+                        className="border-gray-950 py-4 hover:shadow-md disabled:bg-gray-300 disabled:border-border"
                     >
                         {submitting ? 'Submitting...' : 'Submit for review'}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

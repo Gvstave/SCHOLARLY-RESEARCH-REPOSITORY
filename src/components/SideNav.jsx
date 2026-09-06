@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { INSTITUTIONS } from '../constants/institutions';
+import { matchesInstitution, matchesPaperSearch } from '../utils/paperFilters';
 
 // Persistent browse filters shown beside the paper results.
 export default function SideNav({
@@ -14,29 +15,13 @@ export default function SideNav({
   searchQuery
 }) {
   const [openGroup, setOpenGroup] = useState(null);
-  const query = searchQuery.trim().toLowerCase();
-  const matchesQuery = (paper) => (
-    (paper.title || '').toLowerCase().includes(query) ||
-    (paper.abstract || '').toLowerCase().includes(query) ||
-    (paper.profiles?.full_name || '').toLowerCase().includes(query) ||
-    (paper.profiles?.institution || '').toLowerCase().includes(query) ||
-    (paper.category || '').toLowerCase().includes(query)
-  );
-  const matchesInstitution = (paper, institution) => {
-    if (institution === 'All') return true;
-    const paperInstitution = paper.profiles?.institution || 'Independent / Other';
-    if (institution === 'Independent / Other') {
-      return paperInstitution === 'Independent / Other' || paperInstitution === 'Independent';
-    }
-    return paperInstitution === institution;
-  };
   const topicOptions = categories
     .filter((category) => category !== 'All')
     .map((category) => ({
       value: category,
       label: category,
       count: papers.filter((paper) => (
-        matchesQuery(paper) &&
+        matchesPaperSearch(paper, searchQuery) &&
         matchesInstitution(paper, selectedInstitution) &&
         paper.category === category
       )).length,
@@ -45,16 +30,16 @@ export default function SideNav({
     value: institution,
     label: institution,
     count: papers.filter((paper) => (
-      matchesQuery(paper) &&
+      matchesPaperSearch(paper, searchQuery) &&
       (selectedCategory === 'All' || paper.category === selectedCategory) &&
       matchesInstitution(paper, institution)
     )).length,
   }));
   const topicTotal = papers.filter((paper) => (
-    matchesQuery(paper) && matchesInstitution(paper, selectedInstitution)
+    matchesPaperSearch(paper, searchQuery) && matchesInstitution(paper, selectedInstitution)
   )).length;
   const institutionTotal = papers.filter((paper) => (
-    matchesQuery(paper) && (selectedCategory === 'All' || paper.category === selectedCategory)
+    matchesPaperSearch(paper, searchQuery) && (selectedCategory === 'All' || paper.category === selectedCategory)
   )).length;
 
   return (

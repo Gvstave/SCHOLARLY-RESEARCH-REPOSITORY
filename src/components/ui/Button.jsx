@@ -4,7 +4,8 @@ const variantClasses = {
  primary: 'bg-primary text-white border border-primary hover:opacity-90 disabled:opacity-60',
  secondary: 'bg-white text-primary-text border border-gray-300 hover:bg-gray-100 disabled:opacity-60',
  subtle: 'bg-white text-primary-text border border-border hover:bg-primary hover:text-white hover:border-primary disabled:opacity-60',
- chip: 'bg-white   border border-border hover:border-gray-400 disabled:opacity-60',
+ chip: 'bg-white border border-border hover:border-gray-400 disabled:opacity-60',
+ nav: 'max-w-full min-w-0 overflow-hidden whitespace-nowrap border-b-2 pb-0.5',
 };
 
 const sizeClasses = {
@@ -47,7 +48,7 @@ export default function Button({
    {...props}
   >
    {leftIcon ? <span className="shrink-0">{leftIcon}</span> : null}
-   <span>{children}</span>
+    {children !== undefined && children !== null ? <span>{children}</span> : null}
    {rightIcon ? <span className="shrink-0">{rightIcon}</span> : null}
   </Component>
  );

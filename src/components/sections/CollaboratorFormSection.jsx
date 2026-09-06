@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Plus, Trash2, User, Landmark, Mail, Users } from 'lucide-react';
 import FormField from '../ui/FormField';
+import Button from '../ui/Button';
 
 /**
  * Modular component managing co-authors in paper submission.
@@ -59,13 +60,14 @@ export default function CollaboratorFormSection({ collaborators, onUpdateCollabo
      />
     </div>
 
-    <button
-     type="button"
+    <Button
+     variant="secondary"
      onClick={addCollaborator}
-     className="mt-4 flex items-center gap-1.5 border border-gray-800 px-3.5 py-1.5 text-primary-text  hover:bg-gray-800 hover:text-white transition"
+     leftIcon={<Plus className="w-3.5 h-3.5" />}
+     className="mt-4 border-gray-800 px-3.5 py-1.5 hover:bg-gray-800 hover:text-white"
     >
-     <Plus className="w-3.5 h-3.5" /> Add co-author
-    </button>
+     Add co-author
+    </Button>
    </div>
 
    {collaborators.length > 0 && (
@@ -79,13 +81,15 @@ export default function CollaboratorFormSection({ collaborators, onUpdateCollabo
         <span className="">{c.fullName}</span>
         <span className="  block mt-0.5">{c.institution} &bull; {c.email}</span>
        </div>
-       <button
-        type="button"
+    <Button
+     variant="subtle"
+     size="sm"
         onClick={() => removeCollaborator(idx)}
-        className="  hover:text-rose-600 border border-gray-100 hover:border-rose-100 p-1.5 transition rounded-sm bg-gray-50 hover:bg-rose-50"
+     aria-label={`Remove ${c.fullName}`}
+     className="hover:text-rose-600 border-gray-100 hover:border-rose-100 p-1.5 rounded-sm bg-gray-50 hover:bg-rose-50"
+     leftIcon={<Trash2 className="w-3.5 h-3.5" />}
        >
-        <Trash2 className="w-3.5 h-3.5" />
-       </button>
+    </Button>
       </div>
      ))}
     </div>

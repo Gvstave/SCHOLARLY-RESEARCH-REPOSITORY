@@ -1,5 +1,6 @@
  
 import { Trash2 } from 'lucide-react';
+import Button from '../ui/Button';
 
 /**
  * Account deletion panel to help users cleanly remove their stored researcher datasets.
@@ -31,32 +32,32 @@ export default function DeleteAccountCard({
       Are you sure? This cannot be undone.
      </p>
      <div className="flex gap-2  ">
-      <button
-       type="button"
+    <Button
        onClick={handleDeleteAccount}
        disabled={deleting}
-       className="flex-1 bg-red-750 hover:bg-red-850 disabled:opacity-60 disabled:cursor-not-allowed text-white py-2 text-center transition border border-red-800 cursor-pointer"
+     className="flex-1 bg-red-750 hover:bg-red-850 border border-red-800 py-2"
       >
        {deleting ? 'Deleting account...' : 'Yes, delete my account'}
-      </button>
-      <button
-       type="button"
+    </Button>
+    <Button
+     variant="secondary"
        onClick={() => setShowDeleteConfirm(false)}
        disabled={deleting}
-       className="flex-1 bg-white border border-border py-2 text-center text-primary-text hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed transition cursor-pointer"
+     className="flex-1 py-2"
       >
        Cancel
-      </button>
+    </Button>
      </div>
     </div>
    ) : (
-    <button
-     type="button"
+    <Button
      onClick={() => setShowDeleteConfirm(true)}
-     className="w-full bg-red-50 hover:bg-red-100 border border-red-200 text-red-800 py-2.5 transition flex items-center justify-center gap-1.5 cursor-pointer"
+     variant="secondary"
+     leftIcon={<Trash2 className="w-3.5 h-3.5" />}
+     className="w-full bg-red-50 hover:bg-red-100 border-red-200 text-red-800 py-2.5"
     >
-     <Trash2 className="w-3.5 h-3.5" /> Delete my account
-    </button>
+     Delete my account
+    </Button>
    )}
   </div>
  );

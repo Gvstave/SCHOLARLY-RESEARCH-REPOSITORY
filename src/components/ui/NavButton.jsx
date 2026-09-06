@@ -1,8 +1,15 @@
+import Button from './Button';
+
 const NavButton = ({ onClick, children, isActive, className = "" }) => {
   return (
-    <button onClick={onClick} className={`max-w-full min-w-0 overflow-hidden whitespace-nowrap cursor-pointer transition duration-200 pb-0.5 border-b-2 inline-flex items-center gap-1.5 ${isActive ? "text-primary border-primary " : "  hover:text-primary border-transparent"} ${className}`}>
-      <span className="nav-button min-w-0 inline-flex items-center gap-1.5">{children}</span>
-    </button>
+    <Button
+      onClick={onClick}
+      variant="nav"
+      size="sm"
+      className={`nav-button ${isActive ? "text-primary border-primary" : "hover:text-primary border-transparent"} ${className}`}
+    >
+      {children}
+    </Button>
   )
 };
 

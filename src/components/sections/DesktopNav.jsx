@@ -17,7 +17,7 @@ export default function DesktopNav({
     onBoard,
 }) {
     return (
-        <div className="hidden lg:flex flex-1 min-w-0 max-w-full items-center justify-center gap-5 xl:gap-10 overflow-hidden  text-primary">
+        <div className="hidden lg:flex flex-1 min-w-0 max-w-full items-center justify-center gap-5 xl:gap-10 overflow-hidden text-primary">
             {!user && (
                 <NavButton
                     isActive={activeTab === 'search' && !browseMode}
