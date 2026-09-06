@@ -48,7 +48,7 @@ export default function Button({
    {...props}
   >
    {leftIcon ? <span className="shrink-0">{leftIcon}</span> : null}
-    {children !== undefined && children !== null ? <span>{children}</span> : null}
+    {children !== undefined && children !== null ? <span className="button-label">{children}</span> : null}
    {rightIcon ? <span className="shrink-0">{rightIcon}</span> : null}
   </Component>
  );

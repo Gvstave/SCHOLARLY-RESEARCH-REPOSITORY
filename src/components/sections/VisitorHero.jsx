@@ -38,7 +38,7 @@ export default function VisitorHero({
        onClick={() => setSelectedCategory(c)}
        className="hover:text-primary cursor-pointer transition  "
       >
-       {c}
+       <p>{c}</p>
       </button>
      ))}
     </div>
