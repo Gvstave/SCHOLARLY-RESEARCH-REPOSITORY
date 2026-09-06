@@ -1,7 +1,6 @@
 import { useAuth } from '../auth';
 import Loader from './ui/Loader';
 import AccessNotice from './ui/AccessNotice';
-import Button from './ui/Button';
 
 export const ProtectedRoute = ({ children, onRedirectToAuth }) => {
  const { user, loading } = useAuth();
