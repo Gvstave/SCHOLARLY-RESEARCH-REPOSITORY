@@ -38,6 +38,12 @@
     line-height: 1.5rem;
   }
 
+  .nav-button > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
   textarea,
   input {
     font-family: var(--font-sans);
@@ -61,6 +67,10 @@ span {
   line-height: 1.5;
   letter-spacing: .24px;
   color: #000;
+}
+
+.button-label {
+  color: inherit;
 }
 
 button,

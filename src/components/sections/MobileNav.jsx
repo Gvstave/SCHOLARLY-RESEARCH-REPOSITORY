@@ -30,7 +30,7 @@ export default function MobileNav({
   onSignIn,
   onSignOut,
 }) {
-  const navItemClass = (isActive) => `w-full max-w-full min-w-0 overflow-hidden text-left py-3.5 flex items-center justify-between gap-3 transition ${isActive
+  const navItemClass = (isActive) => `w-full max-w-full min-w-0 overflow-hidden text-left py-3.5 flex flex-row items-center justify-between gap-3 transition ${isActive
     ? 'text-primary'
     : 'hover:text-gray-500'
     }`;

@@ -8,7 +8,7 @@ export default function AccessNotice({ title, summary, details, onSignIn, footer
             <p className="mt-4 max-w-md">{details}</p>
             {footer && <p className="mt-6">{footer}</p>}
             {onSignIn && (
-                <Button onClick={onSignIn} className="mt-6">
+                <Button onClick={onSignIn} variant="primary" className="mt-6">
                     Sign in
                 </Button>
             )}
